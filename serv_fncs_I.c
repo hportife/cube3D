@@ -12,7 +12,16 @@ int is_valid_name(char *name)
     {
         if (!ft_isalnum(name[i]) && name[i] != '_' && name[i] != '.')
             return (1);
-        i++;
+        if (name[i] == '.' && !ft_strnstr(*name[i + 1], "cub", 3))
+            return (1);
+        else 
+        {
+            i += 3;
+            if (i != '\0')
+            return (1);
+        }
+        if (name[i])
+            i++;
     }
     return (0);
 }
