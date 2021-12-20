@@ -9,5 +9,24 @@ int main(int argc, char *argv[])
 	gen = malloc(sizeof(t_gen));
 	if (valid_src_file(argv[1], gen.src_file))
 		error_call("Error:\nwrong map name.\n", 1, &gen);
+	if (!get_map(gen.map_srcs, map.src_file))
+		error_call("Error:\nincorrect content of the source file.\n", 1, &gen);
 	return (0);
+}
+
+int	get_map(t_map **mpsrc, int map_file)
+{
+	char	*tmp;
+	int		read_ident
+
+	read_ident = get_next_line(map_file, tmp);
+	while (read_ident != 0) // пока наш файл не закончился
+	{
+		if (read_ident == -1) // если сфайлом беда
+			return (0);
+		if (add_content_to_map_srcs()) //если какая-то изстрок нас не устраивает при чтении, ретёрнаем завершение программы
+			return (0);
+		read_ident = get_next_line(map_file, tmp); // продолжаем считывание с файла
+	}
+	//сюда нужно добавить проверки корректностивсех полученных из файла данных
 }
