@@ -14,6 +14,30 @@ int main(int argc, char *argv[])
 	return (0);
 }
 
+char	*skip_tabulation(char *src)
+{
+	int	i;
+
+	i = 0;
+	while (src[i] == " " || src[i] == "\t")
+		i++;
+	return (*src[i]);
+}
+
+char	*get_data(char *src)
+{
+
+}
+
+int	add_content_to_map_srcs(char *line, t_map **dst)
+{
+	if (!line)
+		return (1);
+	if (ft_strnstr(line, "NO", ft_strlen(line)))
+		dst->NO = get_data(skip_tabulation(ft_strnstr(line, "NO", ft_strlen(line))));
+	return (0);
+}
+
 int	get_map(t_map **mpsrc, int map_file)
 {
 	char	*tmp;
@@ -28,5 +52,5 @@ int	get_map(t_map **mpsrc, int map_file)
 			return (0);
 		read_ident = get_next_line(map_file, tmp); // продолжаем считывание с файла
 	}
-	//сюда нужно добавить проверки корректностивсех полученных из файла данных
+	//сюда нужно добавить проверки корректности всех полученных из файла данных
 }
