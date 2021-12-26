@@ -90,6 +90,52 @@ int get_sym_pos(char **map, int *x_pos, int *y_pos, char *symbols)
     return (0);
 }
 
+int get_valid_unit_pos(int x, int y, char **map)
+{
+    if ((y <= 0 || y >= duarrlen(map)) || (x <= 0 || x >= ft_strlen(map[0])))
+        return (1);
+    if ((map[y - 1][x] != '0' && map[y - 1][x] != '1')
+        || (map[y + 1][x] != '0' && map[y + 1][x] != '1'))
+        return (1);
+    if ((map[y][x - 1] != '0' && map[y][x - 1] != '1')
+        || (map[y][x + 1] != '0' && map[y][x + 1] != '1'))
+        return (1);
+    if ((map[y - 1][x - 1] != '0' && map[y - 1][x - 1] != '1')
+    || (map[y + 1][x - 1] != '0' && map[y + 1][x - 1] != '1'))
+        return (1);
+    if ((map[y - 1][x + 1] != '0' && map[y - 1][x + 1] != '1')
+    || (map[y + 1][x + 1] != '0' && map[y + 1][x + 1] != '1'))
+        return (1);
+    return (0);
+}
+
+int start_wall_valid(int unit_x_pos, int unit_y_pos, char **map) //НУЖНА ДОРАБОТКА
+{
+    int tmp_x;
+    int tmp_y;
+    int x;
+    int y;
+
+    x = unit_x_pos;
+    y = unit_y_pos;
+    while (map[y][x - 1] != '1')
+        x--;
+    y--;
+    tmp_x = x;
+    tmp_y = y;
+    while (x != tmp_x && y != tmp_y)
+    {
+        while (map[y][x - 1] != '1' && (x != tmp_x && y != tmp_y))
+            x--;
+        while (map[y - 1][x] != '1' && (x != tmp_x && y != tmp_y))
+            y--;
+        while (map[y][x + 1] != '1' && (x != tmp_x && y != tmp_y))
+            x++;
+        while (map[y + 1][x] != '1' && (x != tmp_x && y != tmp_y))
+            y++;
+    }
+}
+
 int get_valid_wall_qt(char **map)
 {
     int x_pos;
@@ -99,7 +145,10 @@ int get_valid_wall_qt(char **map)
         return (1);
     if (get_sym_pos(map, &x_pos, &y_pos, "SNEW"))
         return (1);
-    
+    if (get_valid_unit_pos(x_pos, y_pos, map))
+        return (1);
+    if (start_wall_valid(x_pos, y_pos, map) == -1)
+        return (1);
 }
 
 int get_valid_map(char **map)
@@ -114,7 +163,7 @@ int get_valid_map(char **map)
 /*
 111111    
 1000011111    
-1000000001
+1000000100
 1110011111
   1001    
   10011111
