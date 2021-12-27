@@ -81,20 +81,87 @@ int move(int *x, int *y, char ident, char **map)
         return (1);
     return (0);
 }
+/*
+0 - разрешено движение влево, пока не встретится единица на пути или 
+ячейка вниз не окажется доступной для прохождения (читай не будет не стенкой)
+1 - разрешено движение вверх, пока пока не встретится единица на пути или 
+ячейка влево не окажется доступной для прохождения (читай не будет не стенкой)
+2 - разрешено движение вправо, пока пока не встретится единица на пути или 
+ячейка вверх не окажется доступной для прохождения (читай не будет не стенкой)
+3 - разрешено движение вниз, пока пока не встретится единица на пути или 
+ячейка вправо не окажется доступной для прохождения (читай не будет не стенкой)
+0->1->2->3->0
+*/
 
-int valid_exec(int *x, int *y, char **map)
+int get_phase(int const x, int const y, char const **map, int const now_phase)
 {
+    if (now_phase == 0)
+    {
+        if (map[y + 1][x] == '0')
+            return (3);
+        else if ((map[y + 1][x] == '1') && (map[y][x - 1] == '1'))
+            return(1)
+        return (0);
+    }
+    else if (now_phase == 1)
+    {
+        if (map[y][x - 1] == '0')
+            return (0);
+        else if ((map[y][x - 1] == '1') && (map[y - 1][x] == '1'))
+            return (2)
+        return (1);
+    }
+    return (get_phase_pt_two(x, y, map, now_phase));
+}
+
+int get_phase_pt_two(int const x, int const y, char const **map, int const now_phase)
+{
+    if (now_phase == 2)
+    {
+        if (map[y - 1][x] == '0')
+            return (1);
+        else if ((map[y - 1][x] == '1') && (map[y][x + 1] == '1'))
+            return(3)
+        return (2);
+    }
+    else if (now_phase == 3)
+    {
+        if (map[y][x + 1] == '0')
+            return (2);
+        else if ((map[y][x + 1] == '1') && (map[y + 1][x] == '1'))
+            return (0)
+        return (3);
+    }
+}
+
+//Нужно добавить проверку на наличие невалидных ячеек
+
+int valid_exec(int *x, int *y, char **map, char ident)
+{
+    int this_x;
+    int this_y;
     int premission_phase;
 
-    premission_phase = 0;
-    
+    premission_phase = 1;
+    this_x = x;
+    this_y = y + 1;
+    while (this_x != x && this_y != y)
+    {
+        premission_phase = get_phase(*x, *y, map, premission_phase);
+        if (premission_phase == 0)
+            move(x, y, 'l', map);
+        else if (premission_phase == 1)
+            move(x, y, 'u', map);
+        else if (premission_phase == 2)
+            move(x, y, 'r', map);
+        else if (premission_phase == 3)
+            move(x, y, 'd', map);
+    }
     return (0);
 }
 
 int start_wall_valid(int unit_x_pos, int unit_y_pos, char **map) //НУЖНА ДОРАБОТКА
 {
-    int tmp_x;
-    int tmp_y;
     int x;
     int y;
 
@@ -102,13 +169,7 @@ int start_wall_valid(int unit_x_pos, int unit_y_pos, char **map) //НУЖНА Д
     y = unit_y_pos;
     while (map[y][x - 1] != '1')
         x--;
-    y--;
-    tmp_x = x;
-    tmp_y = y;
-    while (x != tmp_x && y != tmp_y)
-    {
-        valid_exec(&x, &y, map);
-    }
+    valid_exec(&x, &y, map, 'u');
 }
 
 int get_valid_wall_qt(char **map)
