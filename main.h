@@ -23,5 +23,8 @@ int     duarrlen(char **array);//поиск длинны двумерного м
 int 	sne_noonsym(char *str, char sym);//проверка наличия единственного символа в начале и конце строки
 int     str_no_have_syms(char *str, char *syms);//проверка наличия в строке только символов имеющихся в syms
 int     nohavesm(char *str, char sym);//проверка наличия в строке символа
+int     onsymofstr(char *str, const char *symbols);//возвращает количество появлений символов из строки symbols в строке str
+int     getsympos(char *str, const char *symbols);//возвращает положение первого имеющегося из символов symbols в строке str
+
 
 #endif

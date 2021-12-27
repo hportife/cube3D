@@ -18,54 +18,6 @@ int get_valid_map_size(char **map)
     return (0);
 }
 
-int onsymofstr(char *str, const char *symbols)
-{
-    int i;
-    int j;
-    int qt;
-
-    if (!str || !symbols)
-        return (0);
-    i = 0;
-    j = 0;
-    qt = 0;
-    while (symbols[i])
-    {
-        j = 0;
-        while (str[j])
-        {
-            if (str[j] == symbols[i])
-                qt++;
-            j++;
-        }
-        i++;
-    }
-    return (qt);
-}
-
-int getsympos(char *str, const char *symbols)
-{
-    int i;
-    int j;
-
-    if (!str || !symbols)
-        return (-1);
-    i = 0;
-    j = 0;
-    while (symbols[i])
-    {
-        j = 0;
-        while (str[j])
-        {
-            if (str[j] == symbols[i])
-                return (j);
-            j++;
-        }
-        i++;
-    }
-    return (-1);
-}
-
 int get_sym_pos(char **map, int *x_pos, int *y_pos, char *symbols)
 {
     int i;
@@ -109,6 +61,36 @@ int get_valid_unit_pos(int x, int y, char **map)
     return (0);
 }
 
+int move(int *x, int *y, char ident, char **map)
+{
+    if (ident == 'l' && map[*y][*x - 1] != '1')
+        (*x)--;
+    else if (ident == 'l' && map[*y][*x - 1] == '1')
+        return (1);
+    if (ident == 'r' && map[*y][*x + 1] != '1')
+        (*x)++;
+    else if (ident == 'r' && map[*y][*x - 1] == '1')
+        return (1);
+    if (ident == 'u' && map[*y - 1][*x] != '1')
+        (*y)--;
+    else if (ident == 'u' && map[*y - 1][*x] == '1')
+        return (1);
+    if (ident == 'd' && map[*y + 1][*x] != '1')
+        (*y)++;
+    else if (ident == 'd' && map[*y + 1][*x] == '1')
+        return (1);
+    return (0);
+}
+
+int valid_exec(int *x, int *y, char **map)
+{
+    int premission_phase;
+
+    premission_phase = 0;
+    
+    return (0);
+}
+
 int start_wall_valid(int unit_x_pos, int unit_y_pos, char **map) //НУЖНА ДОРАБОТКА
 {
     int tmp_x;
@@ -125,14 +107,7 @@ int start_wall_valid(int unit_x_pos, int unit_y_pos, char **map) //НУЖНА Д
     tmp_y = y;
     while (x != tmp_x && y != tmp_y)
     {
-        while (map[y][x - 1] != '1' && (x != tmp_x && y != tmp_y))
-            x--;
-        while (map[y - 1][x] != '1' && (x != tmp_x && y != tmp_y))
-            y--;
-        while (map[y][x + 1] != '1' && (x != tmp_x && y != tmp_y))
-            x++;
-        while (map[y + 1][x] != '1' && (x != tmp_x && y != tmp_y))
-            y++;
+        valid_exec(&x, &y, map);
     }
 }
 
