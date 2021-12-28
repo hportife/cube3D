@@ -34,7 +34,9 @@ int	add_content_to_map_srcs(char *line, t_map **dst)
 	if (!line)
 		return (1);
 	if (ft_strnstr(line, "NO", ft_strlen(line)))
-		dst->NO = get_data(skip_tabulation(ft_strnstr(line, "NO", ft_strlen(line))));
+		dst->NO = ft_strdup(skip_tabulation(ft_strnstr(line, "NO", ft_strlen(line))));
+	else if (ft_strnstr(line, "SO", ft_strlen(line)))
+		dst->NO = ft_strdup(skip_tabulation(ft_strnstr(line, "SO", ft_strlen(line))));
 	return (0);
 }
 
@@ -48,9 +50,10 @@ int	get_map(t_map **mpsrc, int map_file)
 	{
 		if (read_ident == -1) // если сфайлом беда
 			return (0);
-		if (add_content_to_map_srcs()) //если какая-то изстрок нас не устраивает при чтении, ретёрнаем завершение программы
+		if (add_content_to_map_srcs()) //если какая-то из строк нас не устраивает при чтении, ретёрнаем завершение программы
 			return (0);
 		read_ident = get_next_line(map_file, tmp); // продолжаем считывание с файла
 	}
+
 	//сюда нужно добавить проверки корректности всех полученных из файла данных
 }

@@ -163,8 +163,6 @@ int get_phase_pt_two(int const x, int const y, char const **map, int const now_p
     }
 }
 
-//Нужно добавить проверку на наличие невалидных ячеек
-
 int valid_exec(int *x, int *y, char **map, char ident)
 {
     int this_x;
@@ -224,7 +222,7 @@ int get_valid_map(char **map)
         return (1);
     if (get_valid_map_size(map) || get_valid_wall_qt(map))
         return (1);
-    
+    return (0); //maybe not endet
 }
 
 /*
