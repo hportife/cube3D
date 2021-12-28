@@ -93,6 +93,31 @@ int move(int *x, int *y, char ident, char **map)
 0->1->2->3->0
 */
 
+int get_correct_line(int const x, char *line)
+{
+    int i;
+
+    i = 0;
+    if (line[x - 1] == 1)
+    {
+        while ((line[i] == 0 || ft_strchr("SNEW", line[i]))
+        && line[i + 1] != '1')
+            i++;
+        if (line[i + 1 != '1'])
+            return (1);
+        return (0);
+    }
+    else if (line[x + 1] == 1)
+    {
+        while ((line[i] == 0 || ft_strchr("SNEW", line[i]))
+        && line[i - 1] != '1')
+            i--;
+        if (line[i - 1] != '1')
+            return (1);
+        return (0);
+    }
+}
+
 int get_phase(int const x, int const y, char const **map, int const now_phase)
 {
     if (now_phase == 0)
@@ -109,6 +134,8 @@ int get_phase(int const x, int const y, char const **map, int const now_phase)
             return (0);
         else if ((map[y][x - 1] == '1') && (map[y - 1][x] == '1'))
             return (2)
+        if (get_correct_line(x, map[y]))
+            return (-1);
         return (1);
     }
     return (get_phase_pt_two(x, y, map, now_phase));
@@ -130,6 +157,8 @@ int get_phase_pt_two(int const x, int const y, char const **map, int const now_p
             return (2);
         else if ((map[y][x + 1] == '1') && (map[y + 1][x] == '1'))
             return (0)
+        if (get_correct_line(x, map[y]))
+            return (-1);
         return (3);
     }
 }
@@ -148,6 +177,8 @@ int valid_exec(int *x, int *y, char **map, char ident)
     while (this_x != x && this_y != y)
     {
         premission_phase = get_phase(*x, *y, map, premission_phase);
+        if (premission_phase == -1)
+            return (1);
         if (premission_phase == 0)
             move(x, y, 'l', map);
         else if (premission_phase == 1)
