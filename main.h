@@ -14,6 +14,7 @@ typedef struct s_gen
 {
     int     src_file;
     t_map   *map_srcs;
+
 }   t_gen;
 
 void    error_call(char *message, int exit_code, t_gen *gen);
