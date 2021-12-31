@@ -53,7 +53,7 @@ int get_valid_wall_qt(char **map)
 
     x = 0;
     y = 0;
-    if (get_ssssssssssssssssssssssss)
+    if (get_ssssssssssssssssssssssss)////////////rewrite
     while(map[y])
     {
         x = 0;
