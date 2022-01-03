@@ -12,7 +12,7 @@ int str_no_have_syms(char *str, char *syms)
     i = 0;
     while (str[i])
     {
-        if (nohavesym(syms, str[i]))
+        if (nohavesm(syms, str[i]))
             return (1);
         i++;
     }

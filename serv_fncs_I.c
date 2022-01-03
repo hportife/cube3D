@@ -11,7 +11,7 @@ int is_valid_name(char *name)
     {
         if (!ft_isalnum(name[i]) && name[i] != '_' && name[i] != '.')
             return (1);
-        if (name[i] == '.' && !ft_strnstr("cub", *name[i + 1], 3))
+        if (name[i] == '.' && !ft_strnstr("cub", &name[i + 1], 3))
             return (1);
         else 
         {
