@@ -3,7 +3,6 @@
 int str_no_have_syms(char *str, char *syms)
 {
     int i;
-    int j;
 
     if(!str && !syms)
         return (0);

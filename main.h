@@ -12,7 +12,7 @@ typedef struct s_map
     char    *NO;
     char    *SO;
     char    *WE;
-    char    *SA;
+    char    *EA;
     char    **map;
 }   t_map;
 
@@ -25,7 +25,7 @@ typedef struct s_gen
     char    unit_type;
 }   t_gen;
 
-void	error_call(char *message, int exit_code, t_gen *gen);
+void	error_call(char *message, int exit_code, t_gen **gen);
 int		is_valid_name(char *name);
 int		noonsym(char *str, char sym);//проверка наличия в строне не единственного символа во всей строке
 int		duarrlen(char **array);//поиск длинны двумерного массива
@@ -40,7 +40,10 @@ char	*ft_strdup(const char *s1);
 int		get_map(t_map **mpsrc, int map_file);
 int		valid_src_file(char *file_name, int *file_fd);
 int		ft_isalnum(int c);
+int		ft_isalpha(int c);
 char	*ft_strchr(const char *s, int c);
 int		get_next_line(int fd, char **line);
+void	init_fnc(t_gen **gen);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif

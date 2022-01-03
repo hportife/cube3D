@@ -24,9 +24,17 @@ CMakeFiles/cube.dir/libft_fncs/ft_isalnum.c.o: \
  ../get_next_line/get_next_line.h \
  ../libft_fncs/ft_isalnum.c \
  ../main.h
+CMakeFiles/cube.dir/libft_fncs/ft_isalpha.c.o: \
+ ../get_next_line/get_next_line.h \
+ ../libft_fncs/ft_isalpha.c \
+ ../main.h
 CMakeFiles/cube.dir/libft_fncs/ft_strnstr.c.o: \
  ../get_next_line/get_next_line.h \
  ../libft_fncs/ft_strnstr.c \
+ ../main.h
+CMakeFiles/cube.dir/libft_fncs/ft_substr.c.o: \
+ ../get_next_line/get_next_line.h \
+ ../libft_fncs/ft_substr.c \
  ../main.h
 CMakeFiles/cube.dir/main.c.o: \
  ../get_next_line/get_next_line.h \

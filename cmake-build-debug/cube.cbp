@@ -99,7 +99,13 @@
 		<Unit filename="/Users/hportife/hportife/cube3D/libft_fncs/ft_isalnum.c">
 			<Option target="cube"/>
 		</Unit>
+		<Unit filename="/Users/hportife/hportife/cube3D/libft_fncs/ft_isalpha.c">
+			<Option target="cube"/>
+		</Unit>
 		<Unit filename="/Users/hportife/hportife/cube3D/libft_fncs/ft_strnstr.c">
+			<Option target="cube"/>
+		</Unit>
+		<Unit filename="/Users/hportife/hportife/cube3D/libft_fncs/ft_substr.c">
 			<Option target="cube"/>
 		</Unit>
 		<Unit filename="/Users/hportife/hportife/cube3D/main.c">

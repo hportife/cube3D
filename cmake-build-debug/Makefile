@@ -273,6 +273,30 @@ libft_fncs/ft_isalnum.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cube.dir/build.make CMakeFiles/cube.dir/libft_fncs/ft_isalnum.c.s
 .PHONY : libft_fncs/ft_isalnum.c.s
 
+libft_fncs/ft_isalpha.o: libft_fncs/ft_isalpha.c.o
+.PHONY : libft_fncs/ft_isalpha.o
+
+# target to build an object file
+libft_fncs/ft_isalpha.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cube.dir/build.make CMakeFiles/cube.dir/libft_fncs/ft_isalpha.c.o
+.PHONY : libft_fncs/ft_isalpha.c.o
+
+libft_fncs/ft_isalpha.i: libft_fncs/ft_isalpha.c.i
+.PHONY : libft_fncs/ft_isalpha.i
+
+# target to preprocess a source file
+libft_fncs/ft_isalpha.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cube.dir/build.make CMakeFiles/cube.dir/libft_fncs/ft_isalpha.c.i
+.PHONY : libft_fncs/ft_isalpha.c.i
+
+libft_fncs/ft_isalpha.s: libft_fncs/ft_isalpha.c.s
+.PHONY : libft_fncs/ft_isalpha.s
+
+# target to generate assembly for a file
+libft_fncs/ft_isalpha.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cube.dir/build.make CMakeFiles/cube.dir/libft_fncs/ft_isalpha.c.s
+.PHONY : libft_fncs/ft_isalpha.c.s
+
 libft_fncs/ft_strnstr.o: libft_fncs/ft_strnstr.c.o
 .PHONY : libft_fncs/ft_strnstr.o
 
@@ -296,6 +320,30 @@ libft_fncs/ft_strnstr.s: libft_fncs/ft_strnstr.c.s
 libft_fncs/ft_strnstr.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cube.dir/build.make CMakeFiles/cube.dir/libft_fncs/ft_strnstr.c.s
 .PHONY : libft_fncs/ft_strnstr.c.s
+
+libft_fncs/ft_substr.o: libft_fncs/ft_substr.c.o
+.PHONY : libft_fncs/ft_substr.o
+
+# target to build an object file
+libft_fncs/ft_substr.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cube.dir/build.make CMakeFiles/cube.dir/libft_fncs/ft_substr.c.o
+.PHONY : libft_fncs/ft_substr.c.o
+
+libft_fncs/ft_substr.i: libft_fncs/ft_substr.c.i
+.PHONY : libft_fncs/ft_substr.i
+
+# target to preprocess a source file
+libft_fncs/ft_substr.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cube.dir/build.make CMakeFiles/cube.dir/libft_fncs/ft_substr.c.i
+.PHONY : libft_fncs/ft_substr.c.i
+
+libft_fncs/ft_substr.s: libft_fncs/ft_substr.c.s
+.PHONY : libft_fncs/ft_substr.s
+
+# target to generate assembly for a file
+libft_fncs/ft_substr.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cube.dir/build.make CMakeFiles/cube.dir/libft_fncs/ft_substr.c.s
+.PHONY : libft_fncs/ft_substr.c.s
 
 main.o: main.c.o
 .PHONY : main.o
@@ -516,9 +564,15 @@ help:
 	@echo "... libft_fncs/ft_isalnum.o"
 	@echo "... libft_fncs/ft_isalnum.i"
 	@echo "... libft_fncs/ft_isalnum.s"
+	@echo "... libft_fncs/ft_isalpha.o"
+	@echo "... libft_fncs/ft_isalpha.i"
+	@echo "... libft_fncs/ft_isalpha.s"
 	@echo "... libft_fncs/ft_strnstr.o"
 	@echo "... libft_fncs/ft_strnstr.i"
 	@echo "... libft_fncs/ft_strnstr.s"
+	@echo "... libft_fncs/ft_substr.o"
+	@echo "... libft_fncs/ft_substr.i"
+	@echo "... libft_fncs/ft_substr.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

@@ -13,11 +13,11 @@ int is_valid_name(char *name)
             return (1);
         if (name[i] == '.' && !ft_strnstr("cub", &name[i + 1], 3))
             return (1);
-        else 
+        else if (name[i] == '.' && ft_strnstr("cub", &name[i + 1], 3))
         {
-            i += 3;
-            if (i != '\0')
-            return (1);
+            i += 4;
+            if (name[i] != '\0')
+            	return (1);
         }
         if (name[i])
             i++;

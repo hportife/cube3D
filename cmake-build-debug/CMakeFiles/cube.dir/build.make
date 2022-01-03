@@ -261,6 +261,32 @@ CMakeFiles/cube.dir/get_next_line/get_next_line_utils.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cube.dir/get_next_line/get_next_line_utils.c.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/hportife/hportife/cube3D/get_next_line/get_next_line_utils.c -o CMakeFiles/cube.dir/get_next_line/get_next_line_utils.c.s
 
+CMakeFiles/cube.dir/libft_fncs/ft_isalpha.c.o: CMakeFiles/cube.dir/flags.make
+CMakeFiles/cube.dir/libft_fncs/ft_isalpha.c.o: ../libft_fncs/ft_isalpha.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/hportife/hportife/cube3D/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/cube.dir/libft_fncs/ft_isalpha.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cube.dir/libft_fncs/ft_isalpha.c.o -c /Users/hportife/hportife/cube3D/libft_fncs/ft_isalpha.c
+
+CMakeFiles/cube.dir/libft_fncs/ft_isalpha.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cube.dir/libft_fncs/ft_isalpha.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/hportife/hportife/cube3D/libft_fncs/ft_isalpha.c > CMakeFiles/cube.dir/libft_fncs/ft_isalpha.c.i
+
+CMakeFiles/cube.dir/libft_fncs/ft_isalpha.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cube.dir/libft_fncs/ft_isalpha.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/hportife/hportife/cube3D/libft_fncs/ft_isalpha.c -o CMakeFiles/cube.dir/libft_fncs/ft_isalpha.c.s
+
+CMakeFiles/cube.dir/libft_fncs/ft_substr.c.o: CMakeFiles/cube.dir/flags.make
+CMakeFiles/cube.dir/libft_fncs/ft_substr.c.o: ../libft_fncs/ft_substr.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/hportife/hportife/cube3D/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/cube.dir/libft_fncs/ft_substr.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cube.dir/libft_fncs/ft_substr.c.o -c /Users/hportife/hportife/cube3D/libft_fncs/ft_substr.c
+
+CMakeFiles/cube.dir/libft_fncs/ft_substr.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cube.dir/libft_fncs/ft_substr.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/hportife/hportife/cube3D/libft_fncs/ft_substr.c > CMakeFiles/cube.dir/libft_fncs/ft_substr.c.i
+
+CMakeFiles/cube.dir/libft_fncs/ft_substr.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cube.dir/libft_fncs/ft_substr.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/hportife/hportife/cube3D/libft_fncs/ft_substr.c -o CMakeFiles/cube.dir/libft_fncs/ft_substr.c.s
+
 # Object files for target cube
 cube_OBJECTS = \
 "CMakeFiles/cube.dir/main.c.o" \
@@ -277,7 +303,9 @@ cube_OBJECTS = \
 "CMakeFiles/cube.dir/libft_fncs/ft_strnstr.c.o" \
 "CMakeFiles/cube.dir/libft_fncs/ft_isalnum.c.o" \
 "CMakeFiles/cube.dir/get_next_line/get_next_line.c.o" \
-"CMakeFiles/cube.dir/get_next_line/get_next_line_utils.c.o"
+"CMakeFiles/cube.dir/get_next_line/get_next_line_utils.c.o" \
+"CMakeFiles/cube.dir/libft_fncs/ft_isalpha.c.o" \
+"CMakeFiles/cube.dir/libft_fncs/ft_substr.c.o"
 
 # External object files for target cube
 cube_EXTERNAL_OBJECTS =
@@ -297,9 +325,11 @@ cube: CMakeFiles/cube.dir/libft_fncs/ft_strnstr.c.o
 cube: CMakeFiles/cube.dir/libft_fncs/ft_isalnum.c.o
 cube: CMakeFiles/cube.dir/get_next_line/get_next_line.c.o
 cube: CMakeFiles/cube.dir/get_next_line/get_next_line_utils.c.o
+cube: CMakeFiles/cube.dir/libft_fncs/ft_isalpha.c.o
+cube: CMakeFiles/cube.dir/libft_fncs/ft_substr.c.o
 cube: CMakeFiles/cube.dir/build.make
 cube: CMakeFiles/cube.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/hportife/hportife/cube3D/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Linking C executable cube"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/hportife/hportife/cube3D/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking C executable cube"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/cube.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

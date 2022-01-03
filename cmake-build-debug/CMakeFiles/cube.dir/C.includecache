@@ -6,3 +6,31 @@
 
 #IncludeRegexTransform: 
 
+/Users/hportife/hportife/cube3D/error_call.c
+main.h
+/Users/hportife/hportife/cube3D/main.h
+
+/Users/hportife/hportife/cube3D/get_next_line/get_next_line.h
+unistd.h
+-
+stdlib.h
+-
+stddef.h
+-
+
+/Users/hportife/hportife/cube3D/main.c
+main.h
+/Users/hportife/hportife/cube3D/main.h
+
+/Users/hportife/hportife/cube3D/main.h
+stdlib.h
+-
+stdio.h
+-
+unistd.h
+-
+fcntl.h
+-
+get_next_line/get_next_line.h
+/Users/hportife/hportife/cube3D/get_next_line/get_next_line.h
+

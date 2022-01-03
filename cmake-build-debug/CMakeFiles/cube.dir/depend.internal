@@ -24,9 +24,17 @@ CMakeFiles/cube.dir/libft_fncs/ft_isalnum.c.o
  /Users/hportife/hportife/cube3D/get_next_line/get_next_line.h
  /Users/hportife/hportife/cube3D/libft_fncs/ft_isalnum.c
  /Users/hportife/hportife/cube3D/main.h
+CMakeFiles/cube.dir/libft_fncs/ft_isalpha.c.o
+ /Users/hportife/hportife/cube3D/get_next_line/get_next_line.h
+ /Users/hportife/hportife/cube3D/libft_fncs/ft_isalpha.c
+ /Users/hportife/hportife/cube3D/main.h
 CMakeFiles/cube.dir/libft_fncs/ft_strnstr.c.o
  /Users/hportife/hportife/cube3D/get_next_line/get_next_line.h
  /Users/hportife/hportife/cube3D/libft_fncs/ft_strnstr.c
+ /Users/hportife/hportife/cube3D/main.h
+CMakeFiles/cube.dir/libft_fncs/ft_substr.c.o
+ /Users/hportife/hportife/cube3D/get_next_line/get_next_line.h
+ /Users/hportife/hportife/cube3D/libft_fncs/ft_substr.c
  /Users/hportife/hportife/cube3D/main.h
 CMakeFiles/cube.dir/main.c.o
  /Users/hportife/hportife/cube3D/get_next_line/get_next_line.h
