@@ -63,6 +63,9 @@ int		ft_atoi(const char *str);//тупо атои
 char	fstsym(char *str);//поиск первого не табуляционного символа в строке
 char	**duarrfree(char **arr);//отчистка двумерного массива
 char	**stradd(char *str, char **dst);//добавление строки в двумерный массив
+void    *ft_calloc(size_t count, size_t size);
+char    **duarrcalloc(int size);//"calloc" для двумерного массива
+
 
 
 #endif
