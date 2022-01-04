@@ -52,10 +52,10 @@
 		dkms.conf
 		
 		
-		/.idea/
-		/.vscode/
+		.idea/
+		.vscode/
 		cmake-build-debug/
-		/.gradle/
+		.gradle/
 		CMakeLists.txt
 		*.code-workspace
 		*.pdf
