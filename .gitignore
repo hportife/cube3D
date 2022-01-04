@@ -54,7 +54,7 @@
 		
 		/.idea/
 		/.vscode/
-		/cmake-build-debug/
+		cmake-build-debug/
 		/.gradle/
 		CMakeLists.txt
 		*.code-workspace
