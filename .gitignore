@@ -63,5 +63,3 @@
 		.DS_Store?
 		*.py
 		.out
-# .out?
-.o?
