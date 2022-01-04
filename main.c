@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hportife <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/04 11:36:52 by hportife          #+#    #+#             */
+/*   Updated: 2022/01/04 11:36:54 by hportife         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 int main(int argc, char *argv[])
@@ -24,6 +36,8 @@ void	init_fnc(t_gen **gen)
 	(*gen)->map_srcs->SO = NULL;
 	(*gen)->map_srcs->WE = NULL;
 	(*gen)->map_srcs->map = NULL;
+	(*gen)->map_srcs->CC = NULL;
+	(*gen)->map_srcs->FC = NULL;
 }
 
 char	*skip_tabulation(char *src)
@@ -61,9 +75,66 @@ int	get_path(char *src, char **dst)
 	return (0);
 }
 
-int	valid_map_data()
+int	wrongcloser(int tmpfd)
 {
+	close(tmpfd);
+	return (0);
+}
 
+int	valid_map_data(t_map **map_source)
+{
+	int	tmpfd;
+
+	tmpfd = open((*map_source)->EA, O_RDONLY);
+	if (tmpfd == -1)
+		return (wrongcloser(tmpfd));
+	close(tmpfd);
+	tmpfd = open((*map_source)->NO, O_RDONLY);
+	if (tmpfd == -1)
+		return (wrongcloser(tmpfd));
+	close(tmpfd);
+	tmpfd = open((*map_source)->SO, O_RDONLY);
+	if (tmpfd == -1)
+		return (wrongcloser(tmpfd));
+	close(tmpfd);
+	tmpfd = open((*map_source)->WE, O_RDONLY);
+	if (tmpfd == -1)
+		return (wrongcloser(tmpfd));
+	close(tmpfd);
+	return (1);
+}
+
+void	add_clr(int id, int number, int **dst)
+{
+	*dst[id] = number;
+}
+
+void	get_color(char *src, int **color_dst)
+{
+	int i;
+	int	j;
+	int id;
+
+	i = 1;
+	j = i;
+	id = 0;
+	color_dst[0] = (int *) malloc(sizeof (int) * 3);
+	while (src[i])
+	{
+		if (src[i] == ' ')
+			j = i++;
+		if (src[i] >= '0' && src[i] <= '9')
+			i++;
+		else
+		{
+			color_dst[0][id] = ft_atoi(ft_substr(src, j, i));
+			printf("%d\n", color_dst[0][id]);
+			j = ++i;
+			id++;
+		}
+	}
+	color_dst[0][id] = ft_atoi(ft_substr(src, j, i));
+	printf("%d\n", color_dst[0][id]);
 }
 
 int	add_content_to_map_srcs(char *line, t_map **dst)
@@ -78,10 +149,14 @@ int	add_content_to_map_srcs(char *line, t_map **dst)
 		get_path(ft_strnstr(line, "WE", ft_strlen(line)), &(*dst)->WE);
 	if (ft_strnstr(line, "EA", ft_strlen(line)))
 		get_path(ft_strnstr(line, "EA", ft_strlen(line)), &(*dst)->EA);
-//	if (ft_strnstr(line, "F", ft_strlen(line)) || ft_strnstr(line, "C", ft_strlen(line)))
-//		get_color();
-	return (vaild_map_data());
+	if (ft_strnstr(line, "F", ft_strlen(line)))
+		get_color(ft_strnstr(line, "F", ft_strlen(line)), &(*dst)->FC);
+	if (ft_strnstr(line, "C", ft_strlen(line)))
+		get_color(ft_strnstr(line, "C", ft_strlen(line)), &(*dst)->CC);
+	return (0);
 }
+
+
 
 int	get_map(t_map **mpsrc, int map_file)
 {
@@ -93,10 +168,12 @@ int	get_map(t_map **mpsrc, int map_file)
 	{
 		if (read_ident == -1) // если сфайлом беда
 			return (0);
-		if (add_content_to_map_srcs(tmp, mpsrc)) //если какая-то из строк нас не устраивает при чтении, ретёрнаем завершение программы
+		if (fstsym(tmp) == '1' || fstsym(tmp) == '0')
+			(*mpsrc)->map = stradd(tmp, (*mpsrc)->map);
+		else if (add_content_to_map_srcs(tmp, mpsrc)) //если какая-то из строк нас не устраивает при чтении, ретёрнаем завершение программы
 			return (0);
 		read_ident = get_next_line(map_file, &tmp); // продолжаем считывание с файла
 	}
-	return (1);
+	return (valid_map_data(mpsrc));
 	//сюда нужно добавить проверки корректности всех полученных из файла данных
 }

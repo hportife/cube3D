@@ -78,10 +78,16 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/hportife/hportife/cube3D/duarrfree.c">
+			<Option target="cube"/>
+		</Unit>
 		<Unit filename="/Users/hportife/hportife/cube3D/duarrlen.c">
 			<Option target="cube"/>
 		</Unit>
 		<Unit filename="/Users/hportife/hportife/cube3D/error_call.c">
+			<Option target="cube"/>
+		</Unit>
+		<Unit filename="/Users/hportife/hportife/cube3D/fstsym.c">
 			<Option target="cube"/>
 		</Unit>
 		<Unit filename="/Users/hportife/hportife/cube3D/get_next_line/get_next_line.c">
@@ -94,6 +100,9 @@
 			<Option target="cube"/>
 		</Unit>
 		<Unit filename="/Users/hportife/hportife/cube3D/getsympos.c">
+			<Option target="cube"/>
+		</Unit>
+		<Unit filename="/Users/hportife/hportife/cube3D/libft_fncs/ft_atoi.c">
 			<Option target="cube"/>
 		</Unit>
 		<Unit filename="/Users/hportife/hportife/cube3D/libft_fncs/ft_isalnum.c">
@@ -130,6 +139,9 @@
 			<Option target="cube"/>
 		</Unit>
 		<Unit filename="/Users/hportife/hportife/cube3D/str_no_have_syms.c">
+			<Option target="cube"/>
+		</Unit>
+		<Unit filename="/Users/hportife/hportife/cube3D/stradd.c">
 			<Option target="cube"/>
 		</Unit>
 		<Unit filename="/Users/hportife/hportife/cube3D/valid_fncs.c">

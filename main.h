@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hportife <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/04 11:36:57 by hportife          #+#    #+#             */
+/*   Updated: 2022/01/04 11:36:58 by hportife         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MAIN_H
 #define MAIN_H
 
@@ -13,6 +25,8 @@ typedef struct s_map
     char    *SO;
     char    *WE;
     char    *EA;
+	int		*FC;
+	int		*CC;
     char    **map;
 }   t_map;
 
@@ -45,5 +59,10 @@ char	*ft_strchr(const char *s, int c);
 int		get_next_line(int fd, char **line);
 void	init_fnc(t_gen **gen);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+int		ft_atoi(const char *str);//тупо атои
+char	fstsym(char *str);//поиск первого не табуляционного символа в строке
+char	**duarrfree(char **arr);//отчистка двумерного массива
+char	**stradd(char *str, char **dst);//добавление строки в двумерный массив
+
 
 #endif

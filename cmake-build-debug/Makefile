@@ -129,6 +129,30 @@ cube/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cube.dir/build.make CMakeFiles/cube.dir/build
 .PHONY : cube/fast
 
+duarrfree.o: duarrfree.c.o
+.PHONY : duarrfree.o
+
+# target to build an object file
+duarrfree.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cube.dir/build.make CMakeFiles/cube.dir/duarrfree.c.o
+.PHONY : duarrfree.c.o
+
+duarrfree.i: duarrfree.c.i
+.PHONY : duarrfree.i
+
+# target to preprocess a source file
+duarrfree.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cube.dir/build.make CMakeFiles/cube.dir/duarrfree.c.i
+.PHONY : duarrfree.c.i
+
+duarrfree.s: duarrfree.c.s
+.PHONY : duarrfree.s
+
+# target to generate assembly for a file
+duarrfree.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cube.dir/build.make CMakeFiles/cube.dir/duarrfree.c.s
+.PHONY : duarrfree.c.s
+
 duarrlen.o: duarrlen.c.o
 .PHONY : duarrlen.o
 
@@ -176,6 +200,30 @@ error_call.s: error_call.c.s
 error_call.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cube.dir/build.make CMakeFiles/cube.dir/error_call.c.s
 .PHONY : error_call.c.s
+
+fstsym.o: fstsym.c.o
+.PHONY : fstsym.o
+
+# target to build an object file
+fstsym.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cube.dir/build.make CMakeFiles/cube.dir/fstsym.c.o
+.PHONY : fstsym.c.o
+
+fstsym.i: fstsym.c.i
+.PHONY : fstsym.i
+
+# target to preprocess a source file
+fstsym.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cube.dir/build.make CMakeFiles/cube.dir/fstsym.c.i
+.PHONY : fstsym.c.i
+
+fstsym.s: fstsym.c.s
+.PHONY : fstsym.s
+
+# target to generate assembly for a file
+fstsym.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cube.dir/build.make CMakeFiles/cube.dir/fstsym.c.s
+.PHONY : fstsym.c.s
 
 get_next_line/get_next_line.o: get_next_line/get_next_line.c.o
 .PHONY : get_next_line/get_next_line.o
@@ -248,6 +296,30 @@ getsympos.s: getsympos.c.s
 getsympos.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cube.dir/build.make CMakeFiles/cube.dir/getsympos.c.s
 .PHONY : getsympos.c.s
+
+libft_fncs/ft_atoi.o: libft_fncs/ft_atoi.c.o
+.PHONY : libft_fncs/ft_atoi.o
+
+# target to build an object file
+libft_fncs/ft_atoi.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cube.dir/build.make CMakeFiles/cube.dir/libft_fncs/ft_atoi.c.o
+.PHONY : libft_fncs/ft_atoi.c.o
+
+libft_fncs/ft_atoi.i: libft_fncs/ft_atoi.c.i
+.PHONY : libft_fncs/ft_atoi.i
+
+# target to preprocess a source file
+libft_fncs/ft_atoi.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cube.dir/build.make CMakeFiles/cube.dir/libft_fncs/ft_atoi.c.i
+.PHONY : libft_fncs/ft_atoi.c.i
+
+libft_fncs/ft_atoi.s: libft_fncs/ft_atoi.c.s
+.PHONY : libft_fncs/ft_atoi.s
+
+# target to generate assembly for a file
+libft_fncs/ft_atoi.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cube.dir/build.make CMakeFiles/cube.dir/libft_fncs/ft_atoi.c.s
+.PHONY : libft_fncs/ft_atoi.c.s
 
 libft_fncs/ft_isalnum.o: libft_fncs/ft_isalnum.c.o
 .PHONY : libft_fncs/ft_isalnum.o
@@ -513,6 +585,30 @@ str_no_have_syms.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cube.dir/build.make CMakeFiles/cube.dir/str_no_have_syms.c.s
 .PHONY : str_no_have_syms.c.s
 
+stradd.o: stradd.c.o
+.PHONY : stradd.o
+
+# target to build an object file
+stradd.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cube.dir/build.make CMakeFiles/cube.dir/stradd.c.o
+.PHONY : stradd.c.o
+
+stradd.i: stradd.c.i
+.PHONY : stradd.i
+
+# target to preprocess a source file
+stradd.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cube.dir/build.make CMakeFiles/cube.dir/stradd.c.i
+.PHONY : stradd.c.i
+
+stradd.s: stradd.c.s
+.PHONY : stradd.s
+
+# target to generate assembly for a file
+stradd.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cube.dir/build.make CMakeFiles/cube.dir/stradd.c.s
+.PHONY : stradd.c.s
+
 valid_fncs.o: valid_fncs.c.o
 .PHONY : valid_fncs.o
 
@@ -546,12 +642,18 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... cube"
+	@echo "... duarrfree.o"
+	@echo "... duarrfree.i"
+	@echo "... duarrfree.s"
 	@echo "... duarrlen.o"
 	@echo "... duarrlen.i"
 	@echo "... duarrlen.s"
 	@echo "... error_call.o"
 	@echo "... error_call.i"
 	@echo "... error_call.s"
+	@echo "... fstsym.o"
+	@echo "... fstsym.i"
+	@echo "... fstsym.s"
 	@echo "... get_next_line/get_next_line.o"
 	@echo "... get_next_line/get_next_line.i"
 	@echo "... get_next_line/get_next_line.s"
@@ -561,6 +663,9 @@ help:
 	@echo "... getsympos.o"
 	@echo "... getsympos.i"
 	@echo "... getsympos.s"
+	@echo "... libft_fncs/ft_atoi.o"
+	@echo "... libft_fncs/ft_atoi.i"
+	@echo "... libft_fncs/ft_atoi.s"
 	@echo "... libft_fncs/ft_isalnum.o"
 	@echo "... libft_fncs/ft_isalnum.i"
 	@echo "... libft_fncs/ft_isalnum.s"
@@ -594,6 +699,9 @@ help:
 	@echo "... str_no_have_syms.o"
 	@echo "... str_no_have_syms.i"
 	@echo "... str_no_have_syms.s"
+	@echo "... stradd.o"
+	@echo "... stradd.i"
+	@echo "... stradd.s"
 	@echo "... valid_fncs.o"
 	@echo "... valid_fncs.i"
 	@echo "... valid_fncs.s"

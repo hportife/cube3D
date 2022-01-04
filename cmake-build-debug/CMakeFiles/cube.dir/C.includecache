@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/hportife/hportife/cube3D/error_call.c
+/Users/hportife/hportife/cube3D/fstsym.c
 main.h
 /Users/hportife/hportife/cube3D/main.h
 
@@ -17,10 +17,6 @@ stdlib.h
 -
 stddef.h
 -
-
-/Users/hportife/hportife/cube3D/main.c
-main.h
-/Users/hportife/hportife/cube3D/main.h
 
 /Users/hportife/hportife/cube3D/main.h
 stdlib.h

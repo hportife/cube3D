@@ -287,6 +287,58 @@ CMakeFiles/cube.dir/libft_fncs/ft_substr.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cube.dir/libft_fncs/ft_substr.c.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/hportife/hportife/cube3D/libft_fncs/ft_substr.c -o CMakeFiles/cube.dir/libft_fncs/ft_substr.c.s
 
+CMakeFiles/cube.dir/libft_fncs/ft_atoi.c.o: CMakeFiles/cube.dir/flags.make
+CMakeFiles/cube.dir/libft_fncs/ft_atoi.c.o: ../libft_fncs/ft_atoi.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/hportife/hportife/cube3D/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building C object CMakeFiles/cube.dir/libft_fncs/ft_atoi.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cube.dir/libft_fncs/ft_atoi.c.o -c /Users/hportife/hportife/cube3D/libft_fncs/ft_atoi.c
+
+CMakeFiles/cube.dir/libft_fncs/ft_atoi.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cube.dir/libft_fncs/ft_atoi.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/hportife/hportife/cube3D/libft_fncs/ft_atoi.c > CMakeFiles/cube.dir/libft_fncs/ft_atoi.c.i
+
+CMakeFiles/cube.dir/libft_fncs/ft_atoi.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cube.dir/libft_fncs/ft_atoi.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/hportife/hportife/cube3D/libft_fncs/ft_atoi.c -o CMakeFiles/cube.dir/libft_fncs/ft_atoi.c.s
+
+CMakeFiles/cube.dir/stradd.c.o: CMakeFiles/cube.dir/flags.make
+CMakeFiles/cube.dir/stradd.c.o: ../stradd.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/hportife/hportife/cube3D/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building C object CMakeFiles/cube.dir/stradd.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cube.dir/stradd.c.o -c /Users/hportife/hportife/cube3D/stradd.c
+
+CMakeFiles/cube.dir/stradd.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cube.dir/stradd.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/hportife/hportife/cube3D/stradd.c > CMakeFiles/cube.dir/stradd.c.i
+
+CMakeFiles/cube.dir/stradd.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cube.dir/stradd.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/hportife/hportife/cube3D/stradd.c -o CMakeFiles/cube.dir/stradd.c.s
+
+CMakeFiles/cube.dir/duarrfree.c.o: CMakeFiles/cube.dir/flags.make
+CMakeFiles/cube.dir/duarrfree.c.o: ../duarrfree.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/hportife/hportife/cube3D/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building C object CMakeFiles/cube.dir/duarrfree.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cube.dir/duarrfree.c.o -c /Users/hportife/hportife/cube3D/duarrfree.c
+
+CMakeFiles/cube.dir/duarrfree.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cube.dir/duarrfree.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/hportife/hportife/cube3D/duarrfree.c > CMakeFiles/cube.dir/duarrfree.c.i
+
+CMakeFiles/cube.dir/duarrfree.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cube.dir/duarrfree.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/hportife/hportife/cube3D/duarrfree.c -o CMakeFiles/cube.dir/duarrfree.c.s
+
+CMakeFiles/cube.dir/fstsym.c.o: CMakeFiles/cube.dir/flags.make
+CMakeFiles/cube.dir/fstsym.c.o: ../fstsym.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/hportife/hportife/cube3D/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building C object CMakeFiles/cube.dir/fstsym.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cube.dir/fstsym.c.o -c /Users/hportife/hportife/cube3D/fstsym.c
+
+CMakeFiles/cube.dir/fstsym.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cube.dir/fstsym.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/hportife/hportife/cube3D/fstsym.c > CMakeFiles/cube.dir/fstsym.c.i
+
+CMakeFiles/cube.dir/fstsym.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cube.dir/fstsym.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/hportife/hportife/cube3D/fstsym.c -o CMakeFiles/cube.dir/fstsym.c.s
+
 # Object files for target cube
 cube_OBJECTS = \
 "CMakeFiles/cube.dir/main.c.o" \
@@ -305,7 +357,11 @@ cube_OBJECTS = \
 "CMakeFiles/cube.dir/get_next_line/get_next_line.c.o" \
 "CMakeFiles/cube.dir/get_next_line/get_next_line_utils.c.o" \
 "CMakeFiles/cube.dir/libft_fncs/ft_isalpha.c.o" \
-"CMakeFiles/cube.dir/libft_fncs/ft_substr.c.o"
+"CMakeFiles/cube.dir/libft_fncs/ft_substr.c.o" \
+"CMakeFiles/cube.dir/libft_fncs/ft_atoi.c.o" \
+"CMakeFiles/cube.dir/stradd.c.o" \
+"CMakeFiles/cube.dir/duarrfree.c.o" \
+"CMakeFiles/cube.dir/fstsym.c.o"
 
 # External object files for target cube
 cube_EXTERNAL_OBJECTS =
@@ -327,9 +383,13 @@ cube: CMakeFiles/cube.dir/get_next_line/get_next_line.c.o
 cube: CMakeFiles/cube.dir/get_next_line/get_next_line_utils.c.o
 cube: CMakeFiles/cube.dir/libft_fncs/ft_isalpha.c.o
 cube: CMakeFiles/cube.dir/libft_fncs/ft_substr.c.o
+cube: CMakeFiles/cube.dir/libft_fncs/ft_atoi.c.o
+cube: CMakeFiles/cube.dir/stradd.c.o
+cube: CMakeFiles/cube.dir/duarrfree.c.o
+cube: CMakeFiles/cube.dir/fstsym.c.o
 cube: CMakeFiles/cube.dir/build.make
 cube: CMakeFiles/cube.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/hportife/hportife/cube3D/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking C executable cube"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/hportife/hportife/cube3D/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Linking C executable cube"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/cube.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
