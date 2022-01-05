@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <main.h>
+#include "main.h"
 
 char	**duarrcalloc(int size)
 {
 	int		i;
 	char	**tmp;
 
-	tmp = (char **)(sizeof (char *) * size + 1);
+	tmp = (char **)malloc(sizeof (char *) * size);
 	if (!tmp)
 		return (NULL);
 	i = 0;

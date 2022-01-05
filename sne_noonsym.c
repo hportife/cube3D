@@ -1,4 +1,4 @@
-3#include "main.h"
+#include "main.h"
 
 int	sne_noonsym(char *str, char sym)
 {

@@ -23,4 +23,7 @@ add_executable(cube main.c
         libft_fncs/ft_atoi.c
         stradd.c
         duarrfree.c
-        fstsym.c)
+        fstsym.c
+        duarrcalloc.c
+        libft_fncs/ft_memset.c
+        )

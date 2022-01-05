@@ -64,7 +64,9 @@ char	fstsym(char *str);//поиск первого не табуляционно
 char	**duarrfree(char **arr);//отчистка двумерного массива
 char	**stradd(char *str, char **dst);//добавление строки в двумерный массив
 void    *ft_calloc(size_t count, size_t size);
-char    **duarrcalloc(int size);//"calloc" для двумерного массива
+char	**duarrcalloc(int size);//"calloc" для двумерного массива
+void	*ft_memset(void *b, int c, size_t len);
+int		get_color_ret(int const *color_dst);
 
 
 

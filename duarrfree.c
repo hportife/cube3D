@@ -21,7 +21,8 @@ char	**duarrfree(char **arr)
 	i = 0;
 	while (arr[i])
 	{
-		free(arr[i]);
+		if (arr[i])
+			free(arr[i]);
 		arr[i] = NULL;
 		i++;
 	}

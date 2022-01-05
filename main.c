@@ -23,9 +23,16 @@ int main(int argc, char *argv[])
 		error_call("Error:\nwrong map name.\n", 1, &gen);
 	if (!get_map(&gen->map_srcs, gen->src_file))
 		error_call("Error:\nincorrect content of the source file.\n", 1, &gen);
+//	if (!data_transform())
+//		error_call("Error:\nincorrect work with the received data.\n", 1, &gen);
 //	while (1);
 	error_call("", 0, &gen);//утекает использование ГНЛа, нужно будет создать временную переменную для его использования и перед каждым новым использованием её фришить
 }
+
+//int	data_transform()
+//{
+//	return (1);
+//}
 
 void	init_fnc(t_gen **gen)
 {
@@ -104,12 +111,21 @@ int	valid_map_data(t_map **map_source)
 	return (1);
 }
 
-void	add_clr(int id, int number, int **dst)
+int	get_color_ret(int const *color_dst)
 {
-	*dst[id] = number;
+	int i;
+
+	i = 0;
+	while (i < 3)
+	{
+		if (color_dst[i] > 255 || color_dst[i] < 0)
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
-void	get_color(char *src, int **color_dst)
+int	get_color(char *src, int **color_dst)
 {
 	int i;
 	int	j;
@@ -128,13 +144,12 @@ void	get_color(char *src, int **color_dst)
 		else
 		{
 			color_dst[0][id] = ft_atoi(ft_substr(src, j, i));
-			printf("%d\n", color_dst[0][id]);
 			j = ++i;
 			id++;
 		}
 	}
 	color_dst[0][id] = ft_atoi(ft_substr(src, j, i));
-	printf("%d\n", color_dst[0][id]);
+	return (get_color_ret(color_dst[0]));
 }
 
 int	add_content_to_map_srcs(char *line, t_map **dst)
@@ -150,9 +165,9 @@ int	add_content_to_map_srcs(char *line, t_map **dst)
 	if (ft_strnstr(line, "EA", ft_strlen(line)))
 		get_path(ft_strnstr(line, "EA", ft_strlen(line)), &(*dst)->EA);
 	if (ft_strnstr(line, "F", ft_strlen(line)))
-		get_color(ft_strnstr(line, "F", ft_strlen(line)), &(*dst)->FC);
+		return (get_color(ft_strnstr(line, "F", ft_strlen(line)), &(*dst)->FC));
 	if (ft_strnstr(line, "C", ft_strlen(line)))
-		get_color(ft_strnstr(line, "C", ft_strlen(line)), &(*dst)->CC);
+		return (get_color(ft_strnstr(line, "C", ft_strlen(line)), &(*dst)->CC));
 	return (0);
 }
 
@@ -164,16 +179,25 @@ int	get_map(t_map **mpsrc, int map_file)
 	int		read_ident;
 
 	read_ident = get_next_line(map_file, &tmp);
-	while (read_ident != 0) // пока наш файл не закончился
+	while (1) // пока наш файл не закончился
 	{
-		if (read_ident == -1) // если сфайлом беда
+		if (read_ident == -1) // если с файлом беда
 			return (0);
 		if (fstsym(tmp) == '1' || fstsym(tmp) == '0')
 			(*mpsrc)->map = stradd(tmp, (*mpsrc)->map);
 		else if (add_content_to_map_srcs(tmp, mpsrc)) //если какая-то из строк нас не устраивает при чтении, ретёрнаем завершение программы
 			return (0);
-		read_ident = get_next_line(map_file, &tmp); // продолжаем считывание с файла
+		if (read_ident > 0)
+		{
+			if (tmp)
+				free(tmp);
+			read_ident = get_next_line(map_file, &tmp);
+		} // продолжаем считывание с файла
+		else
+			break ;
 	}
+	for (int i = 0; (*mpsrc)->map[i]; i++)
+		printf("%s\n", (*mpsrc)->map[i]);
 	return (valid_map_data(mpsrc));
 	//сюда нужно добавить проверки корректности всех полученных из файла данных
 }
