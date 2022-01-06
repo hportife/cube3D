@@ -6,7 +6,7 @@ set(CMAKE_C_STANDARD 99)
 add_executable(cube main.c
         duarrlen.c
         error_call.c
-        nohawesym.c
+        nohavesym.c
         noonsym.c
         onsymofstr.c
         serv_fncs_I.c
@@ -26,4 +26,4 @@ add_executable(cube main.c
         fstsym.c
         duarrcalloc.c
         libft_fncs/ft_memset.c
-        )
+        get_first_found_symbol.c)

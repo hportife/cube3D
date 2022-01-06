@@ -8,14 +8,14 @@ void	free_general(t_gen **gen)
 		close((*gen)->src_file);
 	if ((*gen)->map_srcs)
 	{
-		if ((*gen)->map_srcs->NO)
-			free((*gen)->map_srcs->NO);
-		if ((*gen)->map_srcs->SO)
-			free((*gen)->map_srcs->SO);
-		if ((*gen)->map_srcs->WE)
-			free((*gen)->map_srcs->WE);
-		if ((*gen)->map_srcs->EA)
-			free((*gen)->map_srcs->EA);
+		if ((*gen)->map_srcs->no)
+			free((*gen)->map_srcs->no);
+		if ((*gen)->map_srcs->so)
+			free((*gen)->map_srcs->so);
+		if ((*gen)->map_srcs->we)
+			free((*gen)->map_srcs->we);
+		if ((*gen)->map_srcs->ea)
+			free((*gen)->map_srcs->ea);
 		if ((*gen)->map_srcs->map)
 		{
 			i = 0;

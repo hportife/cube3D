@@ -23,28 +23,58 @@ int main(int argc, char *argv[])
 		error_call("Error:\nwrong map name.\n", 1, &gen);
 	if (!get_map(&gen->map_srcs, gen->src_file))
 		error_call("Error:\nincorrect content of the source file.\n", 1, &gen);
-//	if (!data_transform())
-//		error_call("Error:\nincorrect work with the received data.\n", 1, &gen);
+	if (!data_transform(&gen))
+		error_call("Error:\nincorrect work with the received data.\n", 1, &gen);
 //	while (1);
 	error_call("", 0, &gen);//утекает использование ГНЛа, нужно будет создать временную переменную для его использования и перед каждым новым использованием её фришить
 }
 
-//int	data_transform()
-//{
-//	return (1);
-//}
+void	init_images(t_gen **gen)
+{
+	(*gen)->data->no = mlx_xpm_file_to_image((*gen)->data->mlx, (*gen)->map_srcs->no,
+						(*gen)->data->width, (*gen)->data->height);
+	free((*gen)->map_srcs->no);
+	(*gen)->map_srcs->no = NULL;
+	(*gen)->data->so = mlx_xpm_file_to_image((*gen)->data->mlx, (*gen)->map_srcs->so,
+											 (*gen)->data->width, (*gen)->data->height);
+	free((*gen)->map_srcs->so);
+	(*gen)->map_srcs->so = NULL;
+	(*gen)->data->we = mlx_xpm_file_to_image((*gen)->data->mlx, (*gen)->map_srcs->we,
+											 (*gen)->data->width, (*gen)->data->height);
+	free((*gen)->map_srcs->we);
+	(*gen)->map_srcs->we = NULL;
+	(*gen)->data->ea = mlx_xpm_file_to_image((*gen)->data->mlx, (*gen)->map_srcs->ea,
+											 (*gen)->data->width, (*gen)->data->height);
+	free((*gen)->map_srcs->ea);
+	(*gen)->map_srcs->ea = NULL;
+}
+
+int	data_transform(t_gen **gen)
+{
+	(*gen)->data->mlx = mlx_init();
+	init_images(gen);
+	if (!valid_map(gen))
+		return (0);
+	return (1);
+}
 
 void	init_fnc(t_gen **gen)
 {
 	(*gen) = (t_gen *)malloc(sizeof(t_gen));
+	(*gen)->data = (t_data *) malloc(sizeof (t_data));
+	(*gen)->data->mlx = NULL;
+	(*gen)->data->win = NULL;
 	(*gen)->map_srcs = (t_map *)malloc(sizeof (t_map));
-	(*gen)->map_srcs->NO = NULL;
-	(*gen)->map_srcs->EA = NULL;
-	(*gen)->map_srcs->SO = NULL;
-	(*gen)->map_srcs->WE = NULL;
+	(*gen)->map_srcs->no = NULL;
+	(*gen)->map_srcs->ea = NULL;
+	(*gen)->map_srcs->so = NULL;
+	(*gen)->map_srcs->we = NULL;
 	(*gen)->map_srcs->map = NULL;
-	(*gen)->map_srcs->CC = NULL;
-	(*gen)->map_srcs->FC = NULL;
+	(*gen)->map_srcs->cc = NULL;
+	(*gen)->map_srcs->fc = NULL;
+	(*gen)->unit_x_pos = 0;
+	(*gen)->unit_y_pos = 0;
+	(*gen)->unit_type = 0;
 }
 
 char	*skip_tabulation(char *src)
@@ -92,19 +122,19 @@ int	valid_map_data(t_map **map_source)
 {
 	int	tmpfd;
 
-	tmpfd = open((*map_source)->EA, O_RDONLY);
+	tmpfd = open((*map_source)->ea, O_RDONLY);
 	if (tmpfd == -1)
 		return (wrongcloser(tmpfd));
 	close(tmpfd);
-	tmpfd = open((*map_source)->NO, O_RDONLY);
+	tmpfd = open((*map_source)->no, O_RDONLY);
 	if (tmpfd == -1)
 		return (wrongcloser(tmpfd));
 	close(tmpfd);
-	tmpfd = open((*map_source)->SO, O_RDONLY);
+	tmpfd = open((*map_source)->so, O_RDONLY);
 	if (tmpfd == -1)
 		return (wrongcloser(tmpfd));
 	close(tmpfd);
-	tmpfd = open((*map_source)->WE, O_RDONLY);
+	tmpfd = open((*map_source)->we, O_RDONLY);
 	if (tmpfd == -1)
 		return (wrongcloser(tmpfd));
 	close(tmpfd);
@@ -157,17 +187,17 @@ int	add_content_to_map_srcs(char *line, t_map **dst)
 	if (!line)
 		return (1);
 	if (ft_strnstr(line, "NO", ft_strlen(line)))
-		get_path(ft_strnstr(line, "NO", ft_strlen(line)), &(*dst)->NO);
+		get_path(ft_strnstr(line, "NO", ft_strlen(line)), &(*dst)->no);
 	if (ft_strnstr(line, "SO", ft_strlen(line)))
-		get_path(ft_strnstr(line, "SO", ft_strlen(line)), &(*dst)->SO);
+		get_path(ft_strnstr(line, "SO", ft_strlen(line)), &(*dst)->so);
 	if (ft_strnstr(line, "WE", ft_strlen(line)))
-		get_path(ft_strnstr(line, "WE", ft_strlen(line)), &(*dst)->WE);
+		get_path(ft_strnstr(line, "WE", ft_strlen(line)), &(*dst)->we);
 	if (ft_strnstr(line, "EA", ft_strlen(line)))
-		get_path(ft_strnstr(line, "EA", ft_strlen(line)), &(*dst)->EA);
+		get_path(ft_strnstr(line, "EA", ft_strlen(line)), &(*dst)->ea);
 	if (ft_strnstr(line, "F", ft_strlen(line)))
-		return (get_color(ft_strnstr(line, "F", ft_strlen(line)), &(*dst)->FC));
+		return (get_color(ft_strnstr(line, "F", ft_strlen(line)), &(*dst)->fc));
 	if (ft_strnstr(line, "C", ft_strlen(line)))
-		return (get_color(ft_strnstr(line, "C", ft_strlen(line)), &(*dst)->CC));
+		return (get_color(ft_strnstr(line, "C", ft_strlen(line)), &(*dst)->cc));
 	return (0);
 }
 

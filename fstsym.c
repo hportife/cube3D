@@ -17,7 +17,7 @@ char fstsym(char *str)
 	int	i;
 
 	if (!str || str[0] == '\0')
-		return (NULL);
+		return (0);
 	i = 0;
 	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
 		i++;
