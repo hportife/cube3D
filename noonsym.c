@@ -7,6 +7,6 @@ int	noonsym(char *str, char sym)
 	i = 0;
 	while (str[i])
 		if (str[i++] != sym)
-			return (1);
-	return (0);
+			return (0);
+	return (1);
 }

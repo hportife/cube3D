@@ -8,7 +8,6 @@ int getsympos(char *str, const char *symbols)
     if (!str || !symbols)
         return (-1);
     i = 0;
-    j = 0;
     while (symbols[i])
     {
         j = 0;

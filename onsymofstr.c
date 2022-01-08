@@ -9,7 +9,6 @@ int onsymofstr(char *str, const char *symbols)
     if (!str || !symbols)
         return (0);
     i = 0;
-    j = 0;
     qt = 0;
     while (symbols[i])
     {

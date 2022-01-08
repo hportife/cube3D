@@ -81,10 +81,12 @@ char	**duarrfree(char **arr);//отчистка двумерного масси�
 char	**stradd(char *str, char **dst);//добавление строки в двумерный массив
 void    *ft_calloc(size_t count, size_t size);
 char	**duarrcalloc(int size);//"calloc" для двумерного массива
+char	get_first_found_symbol(char const *str, char const *symbols);
 void	*ft_memset(void *b, int c, size_t len);
 int		get_color_ret(int const *color_dst);
 int		data_transform(t_gen **gen);
 void	init_images(t_gen **gen);
+int		valid_map(t_gen **gen);
 
 
 #endif

@@ -23,8 +23,8 @@ int main(int argc, char *argv[])
 		error_call("Error:\nwrong map name.\n", 1, &gen);
 	if (!get_map(&gen->map_srcs, gen->src_file))
 		error_call("Error:\nincorrect content of the source file.\n", 1, &gen);
-	if (!data_transform(&gen))
-		error_call("Error:\nincorrect work with the received data.\n", 1, &gen);
+//	if (!data_transform(&gen))
+//		error_call("Error:\nincorrect work with the received data.\n", 1, &gen);
 //	while (1);
 	error_call("", 0, &gen);//утекает использование ГНЛа, нужно будет создать временную переменную для его использования и перед каждым новым использованием её фришить
 }
@@ -201,7 +201,29 @@ int	add_content_to_map_srcs(char *line, t_map **dst)
 	return (0);
 }
 
-
+//int	take_rest_of_card(char **map, char *tmp, int file)
+//{
+//	int	read_ident;
+//
+//	map = stradd(tmp, map);
+//	read_ident = get_next_line(file, &tmp);
+//	while (1)
+//	{
+//		printf("YP!\n");
+//		if (read_ident == -1)
+//			return (read_ident);
+//		map = stradd(tmp, map);
+//		if (read_ident > 0)
+//		{
+//			if (tmp)
+//				free(tmp);
+//			read_ident = get_next_line(file, &tmp);
+//		}
+//		else
+//			break ;
+//	}
+//	return (read_ident);
+//}
 
 int	get_map(t_map **mpsrc, int map_file)
 {
@@ -209,15 +231,17 @@ int	get_map(t_map **mpsrc, int map_file)
 	int		read_ident;
 
 	read_ident = get_next_line(map_file, &tmp);
-	while (1) // пока наш файл не закончился
+	while (1)
 	{
 		if (read_ident == -1) // если с файлом беда
 			return (0);
 		if (fstsym(tmp) == '1' || fstsym(tmp) == '0')
 			(*mpsrc)->map = stradd(tmp, (*mpsrc)->map);
+		else if ((fstsym(tmp) != '1' && fstsym(tmp) != '0') && (*mpsrc)->map)
+			return (0);
 		else if (add_content_to_map_srcs(tmp, mpsrc)) //если какая-то из строк нас не устраивает при чтении, ретёрнаем завершение программы
 			return (0);
-		if (read_ident > 0)
+		if (read_ident > 0) // пока наш файл не закончился
 		{
 			if (tmp)
 				free(tmp);
