@@ -29,30 +29,39 @@ int main(int argc, char *argv[])
 	error_call("", 0, &gen);//утекает использование ГНЛа, нужно будет создать временную переменную для его использования и перед каждым новым использованием её фришить
 }
 
-//void	init_images(t_gen **gen)
-//{
-//	(*gen)->data->no = mlx_xpm_file_to_image((*gen)->data->mlx, (*gen)->map_srcs->no,
-//						(*gen)->data->width, (*gen)->data->height);
-//	free((*gen)->map_srcs->no);
-//	(*gen)->map_srcs->no = NULL;
-//	(*gen)->data->so = mlx_xpm_file_to_image((*gen)->data->mlx, (*gen)->map_srcs->so,
-//											 (*gen)->data->width, (*gen)->data->height);
-//	free((*gen)->map_srcs->so);
-//	(*gen)->map_srcs->so = NULL;
-//	(*gen)->data->we = mlx_xpm_file_to_image((*gen)->data->mlx, (*gen)->map_srcs->we,
-//											 (*gen)->data->width, (*gen)->data->height);
-//	free((*gen)->map_srcs->we);
-//	(*gen)->map_srcs->we = NULL;
-//	(*gen)->data->ea = mlx_xpm_file_to_image((*gen)->data->mlx, (*gen)->map_srcs->ea,
-//											 (*gen)->data->width, (*gen)->data->height);
-//	free((*gen)->map_srcs->ea);
-//	(*gen)->map_srcs->ea = NULL;
-//}
+void	init_images(t_gen **gen)
+{
+	(*gen)->data->no = mlx_xpm_file_to_image((*gen)->data->mlx, (*gen)->map_srcs->no,
+						&(*gen)->data->width, &(*gen)->data->height);
+	free((*gen)->map_srcs->no);
+	(*gen)->map_srcs->no = NULL;
+	(*gen)->data->so = mlx_xpm_file_to_image((*gen)->data->mlx, (*gen)->map_srcs->so,
+											 &(*gen)->data->width, &(*gen)->data->height);
+	free((*gen)->map_srcs->so);
+	(*gen)->map_srcs->so = NULL;
+	(*gen)->data->we = mlx_xpm_file_to_image((*gen)->data->mlx, (*gen)->map_srcs->we,
+											 &(*gen)->data->width, &(*gen)->data->height);
+	free((*gen)->map_srcs->we);
+	(*gen)->map_srcs->we = NULL;
+	(*gen)->data->ea = mlx_xpm_file_to_image((*gen)->data->mlx, (*gen)->map_srcs->ea,
+											 &(*gen)->data->width, &(*gen)->data->height);
+	free((*gen)->map_srcs->ea);
+	(*gen)->map_srcs->ea = NULL;
+}
+
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
 
 int	data_transform(t_gen **gen)
 {
-//	(*gen)->data->mlx = mlx_init();
-//	init_images(gen);
+	(*gen)->data->mlx = mlx_init();
+	init_images(gen);
+	(*gen)->data->f_color = create_trgb(0, (*gen)->map_srcs->fc[0],
+						(*gen)->map_srcs->fc[1], (*gen)->map_srcs->fc[2]);
+	(*gen)->data->c_color = create_trgb(0, (*gen)->map_srcs->cc[0],
+										(*gen)->map_srcs->cc[1], (*gen)->map_srcs->cc[2]);
 	if (!valid_map(gen))
 		return (0);
 	return (1);
@@ -61,9 +70,7 @@ int	data_transform(t_gen **gen)
 void	init_fnc(t_gen **gen)
 {
 	(*gen) = (t_gen *)malloc(sizeof(t_gen));
-	(*gen)->data = (t_data *) malloc(sizeof (t_data));
-	(*gen)->data->mlx = NULL;
-	(*gen)->data->win = NULL;
+	(*gen)->src_file = 0;
 	(*gen)->map_srcs = (t_map *)malloc(sizeof (t_map));
 	(*gen)->map_srcs->no = NULL;
 	(*gen)->map_srcs->ea = NULL;
@@ -72,6 +79,17 @@ void	init_fnc(t_gen **gen)
 	(*gen)->map_srcs->map = NULL;
 	(*gen)->map_srcs->cc = NULL;
 	(*gen)->map_srcs->fc = NULL;
+	(*gen)->data = (t_data *) malloc(sizeof (t_data));
+	(*gen)->data->mlx = NULL;
+	(*gen)->data->win = NULL;
+	(*gen)->data->no = NULL;
+	(*gen)->data->so = NULL;
+	(*gen)->data->we = NULL;
+	(*gen)->data->ea = NULL;
+	(*gen)->data->f_color = 0;
+	(*gen)->data->c_color = 0;
+	(*gen)->data->width = 0;
+	(*gen)->data->height = 0;
 	(*gen)->unit_x_pos = 0;
 	(*gen)->unit_y_pos = 0;
 	(*gen)->unit_type = 0;
@@ -98,7 +116,7 @@ int	get_path(char *src, char **dst)
 		free(*dst);
 		*dst = NULL;
 	}
-	while (!ft_isalpha(src[i]))
+	while (!ft_isalpha(src[i]) && src[i] != '.' && src[i] != '_' && src[i] != '/')
 		i++;
 	j = i;
 	while (ft_isalnum(src[i]) || src[i] == '/' || src[i] == '_' || src[i] == '.')
@@ -221,7 +239,7 @@ int	get_map(t_map **mpsrc, int map_file)
 		else
 			break ;
 	}
-	for (int i = 0; (*mpsrc)->map[i]; i++)
-		printf("%s\n", (*mpsrc)->map[i]);
+//	for (int i = 0; (*mpsrc)->map[i]; i++)
+//		printf("%s\n", (*mpsrc)->map[i]);
 	return (valid_map_data(mpsrc));
 }

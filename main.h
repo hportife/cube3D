@@ -40,8 +40,10 @@ typedef struct s_data
 	void	*so;
 	void	*we;
 	void	*ea;
-	int		*width;
-	int		*height;
+	int		f_color;
+	int		c_color;
+	int		width;
+	int		height;
 }	t_data;
 
 typedef struct s_gen
@@ -98,5 +100,6 @@ int		get_path(char *src, char **dst);
 
 int		data_transform(t_gen **gen);
 void	init_images(t_gen **gen);
+int		create_trgb(int t, int r, int g, int b);
 
 #endif

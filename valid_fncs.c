@@ -71,56 +71,6 @@ int	get_stnnd(char *str, int *start, int *end, char	border)
 	return (0);
 }
 
-//int	digit_period_compr(int opst, int opnd, int spst, int spnd)
-//{
-//	int i;
-//
-//	if (spst > opnd || spnd < opst)
-//		return (0);
-//	while (opst < opnd)
-//	{
-//		i = spst;
-//		while (i < spnd)
-//		{
-//			if (i == opst)
-//				return (1);
-//			i++;
-//		}
-//		opst++;
-//	}
-//	return (0);
-//}
-//
-//int	gaps_checker(char **map, char border)
-//{
-//	int	i;
-//	int	x;
-//	int	y;
-//	int	prevst;
-//	int	prevnd;
-//
-//	i = 0;
-//	while (map && map[i] && map[i + 1])
-//	{
-//		get_stnnd(map[i], &prevst, &prevnd, border);
-//		get_stnnd(map[i + 1], &x, &y, border);
-//		if (prevst == -1 || x == -1)
-//			return (1);
-//		if (digit_period_compr(prevst, prevnd, x, y))
-//			i++;
-//		else
-//			while (!digit_period_compr(prevst, prevnd, x, y))
-//			{
-//				i++;
-//				get_stnnd(map[i], &prevst, &prevnd, border);
-//				get_stnnd(map[i + 1], &x, &y, border);
-//				if (prevst == -1 || x == -1 || !map[i])
-//					return (1);
-//			}
-//	}
-//	return (0);
-//}
-
 int	have_connect(char *str1, char *str2)
 {
 	int	i;
@@ -157,9 +107,6 @@ int	free_use_gaps_ck(char **map)
 {
 	int	gapsckret;
 
-	printf("\n");
-	for (int i = 0; map[i]; i++)
-		printf("%s\n", map[i]);
 	gapsckret = gaps_checker(map);
 	duarrfree(map);
 	return (gapsckret);
@@ -175,7 +122,7 @@ int	valid_map(t_gen **gen)
 	while ((*gen)->map_srcs->map && (*gen)->map_srcs->map[y])
 	{
 		unit_qt += onsymofstr((*gen)->map_srcs->map[y], "SNEW");
-		if (unit_qt == 1)
+		if (unit_qt == 1 && !(*gen)->unit_x_pos && !(*gen)->unit_y_pos)
 		{
 			(*gen)->unit_type = get_first_found_symbol((*gen)->map_srcs->map[y],
 					"SNEW");
