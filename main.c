@@ -23,36 +23,36 @@ int main(int argc, char *argv[])
 		error_call("Error:\nwrong map name.\n", 1, &gen);
 	if (!get_map(&gen->map_srcs, gen->src_file))
 		error_call("Error:\nincorrect content of the source file.\n", 1, &gen);
-//	if (!data_transform(&gen))
-//		error_call("Error:\nincorrect work with the received data.\n", 1, &gen);
+	if (!data_transform(&gen))
+		error_call("Error:\nincorrect work with the received data.\n", 1, &gen);
 //	while (1);
 	error_call("", 0, &gen);//утекает использование ГНЛа, нужно будет создать временную переменную для его использования и перед каждым новым использованием её фришить
 }
 
-void	init_images(t_gen **gen)
-{
-	(*gen)->data->no = mlx_xpm_file_to_image((*gen)->data->mlx, (*gen)->map_srcs->no,
-						(*gen)->data->width, (*gen)->data->height);
-	free((*gen)->map_srcs->no);
-	(*gen)->map_srcs->no = NULL;
-	(*gen)->data->so = mlx_xpm_file_to_image((*gen)->data->mlx, (*gen)->map_srcs->so,
-											 (*gen)->data->width, (*gen)->data->height);
-	free((*gen)->map_srcs->so);
-	(*gen)->map_srcs->so = NULL;
-	(*gen)->data->we = mlx_xpm_file_to_image((*gen)->data->mlx, (*gen)->map_srcs->we,
-											 (*gen)->data->width, (*gen)->data->height);
-	free((*gen)->map_srcs->we);
-	(*gen)->map_srcs->we = NULL;
-	(*gen)->data->ea = mlx_xpm_file_to_image((*gen)->data->mlx, (*gen)->map_srcs->ea,
-											 (*gen)->data->width, (*gen)->data->height);
-	free((*gen)->map_srcs->ea);
-	(*gen)->map_srcs->ea = NULL;
-}
+//void	init_images(t_gen **gen)
+//{
+//	(*gen)->data->no = mlx_xpm_file_to_image((*gen)->data->mlx, (*gen)->map_srcs->no,
+//						(*gen)->data->width, (*gen)->data->height);
+//	free((*gen)->map_srcs->no);
+//	(*gen)->map_srcs->no = NULL;
+//	(*gen)->data->so = mlx_xpm_file_to_image((*gen)->data->mlx, (*gen)->map_srcs->so,
+//											 (*gen)->data->width, (*gen)->data->height);
+//	free((*gen)->map_srcs->so);
+//	(*gen)->map_srcs->so = NULL;
+//	(*gen)->data->we = mlx_xpm_file_to_image((*gen)->data->mlx, (*gen)->map_srcs->we,
+//											 (*gen)->data->width, (*gen)->data->height);
+//	free((*gen)->map_srcs->we);
+//	(*gen)->map_srcs->we = NULL;
+//	(*gen)->data->ea = mlx_xpm_file_to_image((*gen)->data->mlx, (*gen)->map_srcs->ea,
+//											 (*gen)->data->width, (*gen)->data->height);
+//	free((*gen)->map_srcs->ea);
+//	(*gen)->map_srcs->ea = NULL;
+//}
 
 int	data_transform(t_gen **gen)
 {
-	(*gen)->data->mlx = mlx_init();
-	init_images(gen);
+//	(*gen)->data->mlx = mlx_init();
+//	init_images(gen);
 	if (!valid_map(gen))
 		return (0);
 	return (1);
@@ -86,11 +86,6 @@ char	*skip_tabulation(char *src)
 		i++;
 	return (&src[i]);
 }
-
-//char	*get_data(char *src)
-//{
-//
-//}
 
 int	get_path(char *src, char **dst)
 {
@@ -201,30 +196,6 @@ int	add_content_to_map_srcs(char *line, t_map **dst)
 	return (0);
 }
 
-//int	take_rest_of_card(char **map, char *tmp, int file)
-//{
-//	int	read_ident;
-//
-//	map = stradd(tmp, map);
-//	read_ident = get_next_line(file, &tmp);
-//	while (1)
-//	{
-//		printf("YP!\n");
-//		if (read_ident == -1)
-//			return (read_ident);
-//		map = stradd(tmp, map);
-//		if (read_ident > 0)
-//		{
-//			if (tmp)
-//				free(tmp);
-//			read_ident = get_next_line(file, &tmp);
-//		}
-//		else
-//			break ;
-//	}
-//	return (read_ident);
-//}
-
 int	get_map(t_map **mpsrc, int map_file)
 {
 	char	*tmp;
@@ -253,5 +224,4 @@ int	get_map(t_map **mpsrc, int map_file)
 	for (int i = 0; (*mpsrc)->map[i]; i++)
 		printf("%s\n", (*mpsrc)->map[i]);
 	return (valid_map_data(mpsrc));
-	//сюда нужно добавить проверки корректности всех полученных из файла данных
 }

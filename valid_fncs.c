@@ -62,7 +62,7 @@ int	get_stnnd(char *str, int *start, int *end, char	border)
 	if (*start == -1)
 		return (-1);
 	i = *start;
-	while (str[i] == str[*start])
+	while (str[i] && str[i] != ' ')
 	{
 		if (str[i + 1] != str[*start])
 			*end = i;
@@ -71,61 +71,104 @@ int	get_stnnd(char *str, int *start, int *end, char	border)
 	return (0);
 }
 
-int	digit_period_compr(int opst, int opnd, int spst, int spnd)
-{
-	int i;
+//int	digit_period_compr(int opst, int opnd, int spst, int spnd)
+//{
+//	int i;
+//
+//	if (spst > opnd || spnd < opst)
+//		return (0);
+//	while (opst < opnd)
+//	{
+//		i = spst;
+//		while (i < spnd)
+//		{
+//			if (i == opst)
+//				return (1);
+//			i++;
+//		}
+//		opst++;
+//	}
+//	return (0);
+//}
+//
+//int	gaps_checker(char **map, char border)
+//{
+//	int	i;
+//	int	x;
+//	int	y;
+//	int	prevst;
+//	int	prevnd;
+//
+//	i = 0;
+//	while (map && map[i] && map[i + 1])
+//	{
+//		get_stnnd(map[i], &prevst, &prevnd, border);
+//		get_stnnd(map[i + 1], &x, &y, border);
+//		if (prevst == -1 || x == -1)
+//			return (1);
+//		if (digit_period_compr(prevst, prevnd, x, y))
+//			i++;
+//		else
+//			while (!digit_period_compr(prevst, prevnd, x, y))
+//			{
+//				i++;
+//				get_stnnd(map[i], &prevst, &prevnd, border);
+//				get_stnnd(map[i + 1], &x, &y, border);
+//				if (prevst == -1 || x == -1 || !map[i])
+//					return (1);
+//			}
+//	}
+//	return (0);
+//}
 
-	if (spst > opnd || spnd < opst)
+int	have_connect(char *str1, char *str2)
+{
+	int	i;
+	int	hv_cnct;
+
+	if (!str1 || !str2)
 		return (0);
-	while (opst < opnd)
+	i = 0;
+	hv_cnct = 0;
+	while (i < ft_strlen(str1))
 	{
-		i = spst;
-		while (i < spnd)
-		{
-			if (i == opst)
-				return (1);
-			i++;
-		}
-		opst++;
+		if (str1[i] != ' ' && str2[i] != ' ')
+			hv_cnct++;
+		i++;
+	}
+	return (hv_cnct);
+}
+
+int	gaps_checker(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i] && map[i + 1])
+	{
+		if (have_connect(map[i], map[i + 1]) < 1)
+			return (1);
+		i++;
 	}
 	return (0);
 }
 
-int	gaps_checker(char **map, char border)
+int	free_use_gaps_ck(char **map)
 {
-	int	i;
-	int	x;
-	int	y;
-	int	prevst;
-	int	prevnd;
+	int	gapsckret;
 
-	i = 0;
-	while (map && map[y])
-	{
-		get_stnnd(map[i], &prevst, &prevnd, border);
-		get_stnnd(map[i + 1], &x, &y, border);
-		if (prevst == -1 || x == -1)
-			return (1);
-		if (digit_period_compr(prevst, prevnd, x, y))
-			y++;
-		else
-			while (!digit_period_compr(prevst, prevnd, x, y))
-			{
-				y++;
-				get_stnnd(map[i], &prevst, &prevnd, border);
-				get_stnnd(map[i + 1], &x, &y, border);
-				if (prevst == -1 || x == -1 || !map[y])
-					return (1);
-			}
-	}
-	return (0);
+	printf("\n");
+	for (int i = 0; map[i]; i++)
+		printf("%s\n", map[i]);
+	gapsckret = gaps_checker(map);
+	duarrfree(map);
+	return (gapsckret);
 }
 
 int	valid_map(t_gen **gen)
 {
-//	int	x;
-	int	y;
-	int	unit_qt;
+	int		y;
+	int		unit_qt;
 
 	y = 0;
 	unit_qt = 0;
@@ -146,8 +189,5 @@ int	valid_map(t_gen **gen)
 			return (0);
 		y++;
 	}
-//	if (!gaps_checker((*gen)->map_srcs->map, '1'))
-		printf("YP!\n");
-//	return (gaps_checker((*gen)->map_srcs->map, '1'));
-	return (1);
+	return (!gaps_checker((*gen)->map_srcs->map) && !free_use_gaps_ck(duarrotate((*gen)->map_srcs->map)));
 }
