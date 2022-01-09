@@ -81,6 +81,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_atoi(const char *str);
 void    *ft_calloc(size_t count, size_t size);
 void	*ft_memset(void *b, int c, size_t len);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 int		get_next_line(int fd, char **line);
 

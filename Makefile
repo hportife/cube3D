@@ -16,6 +16,7 @@ SRC		= 	main.c\
 			libft_fncs/ft_memset.c\
 			libft_fncs/ft_strnstr.c\
 			libft_fncs/ft_substr.c\
+			libft_fncs/ft_strncmp.c\
 			get_next_line/get_next_line.c\
 			get_next_line/get_next_line_utils.c\
 
