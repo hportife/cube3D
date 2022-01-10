@@ -24,6 +24,22 @@ int	valid_src_file(char *file_name, int *file_fd)
 	return (0);
 }
 
+int nohavesm(char *str, char sym)
+{
+	int i;
+
+	if (!str)
+		return (1);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == sym)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	wrong_pos(char **map, int y)
 {
 	int	x;
@@ -31,11 +47,11 @@ int	wrong_pos(char **map, int y)
 	x = 0;
 	while (map[y][x])
 	{
-		if (map[y][x] == '0' && (y > 0 || !nohavesm("01SNEW", map[y - 1][x]))
-				&& (y < duarrlen(map) - 1 || !nohavesm("01SNEW", map[y + 1][x]))
-				&& (x > 0 || !nohavesm("01SNEW", map[y][x - 1]))
+		if (map[y][x] == '0' && (y > 0 && !nohavesm("01SNEW", map[y - 1][x]))
+				&& (y < duarrlen(map) - 1 && !nohavesm("01SNEW", map[y + 1][x]))
+				&& (x > 0 && !nohavesm("01SNEW", map[y][x - 1]))
 				&& (x < (int)ft_strlen(map[y]) - 1
-				|| !nohavesm("01SNEW", map[y][x + 1])))
+				&& !nohavesm("01SNEW", map[y][x + 1])))
 			x++;
 		else if (!nohavesm("SNEW", map[y][x]) && (y > 0 && y < duarrlen(map) - 1
 				&& x > 0 && x < (int)ft_strlen(map[y]) - 1)

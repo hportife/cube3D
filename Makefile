@@ -10,6 +10,7 @@ SRC		= 	main.c\
 			serv_fncs_I.c	sne_noonsym.c	stradd.c\
 			str_no_have_syms.c	valid_fncs.c\
 			get_first_found_symbol.c	duarrotate.c\
+			freenret.c\
 			libft_fncs/ft_atoi.c\
 			libft_fncs/ft_isalnum.c\
 			libft_fncs/ft_isalpha.c\

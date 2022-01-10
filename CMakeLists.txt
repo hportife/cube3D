@@ -14,7 +14,7 @@ file(GLOB cub_SRC
 #        "mlx/*.h"
         )
 
-add_executable(cube ${cub_SRC} duarrotate.c)
+add_executable(cube ${cub_SRC} duarrotate.c freenret.c)
 
 #include_directories(${CMAKE_CURRENT_SOURCE_DIR}/mlx)
 #

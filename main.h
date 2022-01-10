@@ -70,6 +70,7 @@ int 	onsymofstr(char *str, const char *symbols);
 int 	getsympos(char *str, const char *symbols);
 char	get_first_found_symbol(char const *str, char const *symbols);
 char	fstsym(char *str);
+int		freenret(char **str, int ret);
 
 char	*ft_strnstr(const char *str1, const char *str2, size_t len);
 size_t	ft_strlen(const char *str);

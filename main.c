@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 	if (!data_transform(&gen))
 		error_call("Error:\nincorrect work with the received data.\n", 1, &gen);
 //	while (1);
-	error_call("", 0, &gen);//утекает использование ГНЛа, нужно будет создать временную переменную для его использования и перед каждым новым использованием её фришить
+	error_call("success execute", 0, &gen);//утекает использование ГНЛа, нужно будет создать временную переменную для его использования и перед каждым новым использованием её фришить
 }
 
 //void	init_images(t_gen **gen)
@@ -225,19 +225,17 @@ int	get_map(t_map **mpsrc, int map_file)
 	while (1)
 	{
 		if (read_ident == -1) // если с файлом беда
-			return (0);
+			return (freenret(&tmp, 0));
 		if (fstsym(tmp) == '1' || fstsym(tmp) == '0')
 			(*mpsrc)->map = stradd(tmp, (*mpsrc)->map);
 		else if ((fstsym(tmp) != '1' && fstsym(tmp) != '0') && (*mpsrc)->map)
-			return (0);
+			return (freenret(&tmp, 0));
 		else if (add_content_to_map_srcs(tmp, mpsrc)) //если какая-то из строк нас не устраивает при чтении, ретёрнаем завершение программы
-			return (0);
+			return (freenret(&tmp, 0));
+		if (tmp)
+			free(tmp);
 		if (read_ident > 0) // пока наш файл не закончился
-		{
-			if (tmp)
-				free(tmp);
-			read_ident = get_next_line(map_file, &tmp);
-		} // продолжаем считывание с файла
+			read_ident = get_next_line(map_file, &tmp); // продолжаем считывание с файла
 		else
 			break ;
 	}
