@@ -152,5 +152,7 @@ int	valid_map(t_gen **gen)
 			return (0);
 		y++;
 	}
+	if (unit_qt == 0)
+		return (0);
 	return (!gaps_checker((*gen)->map_srcs->map) && !free_use_gaps_ck(duarrotate((*gen)->map_srcs->map)));
 }
