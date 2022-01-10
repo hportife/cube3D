@@ -32,6 +32,8 @@ void    error_call(char *message, int exit_code, t_gen **gen)
 {
     if (gen)
         free_general(gen);
+	if ((*gen)->src_file > 0)
+		close((*gen)->src_file);
     printf("%s\n", message);
     exit (exit_code);
 }

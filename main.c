@@ -180,7 +180,7 @@ int	get_color(char *src, int **color_dst)
 	color_dst[0] = (int *) malloc(sizeof (int) * 3);
 	while (src[i])
 	{
-		if (src[i] == ' ')
+		if (src[i] == ' ' && id != 2)
 			j = i++;
 		if (src[i] >= '0' && src[i] <= '9')
 			i++;
@@ -208,9 +208,11 @@ int	add_content_to_map_srcs(char *line, t_map **dst)
 	if (ft_strnstr(line, "EA", ft_strlen(line)))
 		get_path(ft_strnstr(line, "EA", ft_strlen(line)), &(*dst)->ea);
 	if (ft_strnstr(line, "F", ft_strlen(line)))
-		return (get_color(ft_strnstr(line, "F", ft_strlen(line)), &(*dst)->fc));
+		if (get_color(ft_strnstr(line, "F", ft_strlen(line)), &(*dst)->fc))
+			return (1);
 	if (ft_strnstr(line, "C", ft_strlen(line)))
-		return (get_color(ft_strnstr(line, "C", ft_strlen(line)), &(*dst)->cc));
+		if (get_color(ft_strnstr(line, "C", ft_strlen(line)), &(*dst)->cc))
+			return (1);
 	return (0);
 }
 
@@ -239,7 +241,5 @@ int	get_map(t_map **mpsrc, int map_file)
 		else
 			break ;
 	}
-//	for (int i = 0; (*mpsrc)->map[i]; i++)
-//		printf("%s\n", (*mpsrc)->map[i]);
 	return (valid_map_data(mpsrc));
 }
