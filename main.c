@@ -12,64 +12,128 @@
 
 #include "main.h"
 
+void	setup_render(t_gen *gen)
+{
+	gen->fov = (double)gen->resy / (double)gen->resx;
+	gen->img = make_image(gen->data->mlx, gen->resx, gen->resy);
+}
+
+void	update_world(t_gen *gen)
+{
+	update_keybinds(gen);
+	update_motion(&(gen->player), gen);
+}
+
+
+int		render_next_frame(t_gen *gen)
+{
+	update_world(gen);
+	draw_floor(gen);
+	draw_skybox(gen);
+	ray(gen, &(gen->img));
+	mlx_put_image_to_window(gen->data->mlx, gen->data->win, gen->img.img, 0, 0);
+	mlx_do_sync(gen->data->mlx);
+	return (0);
+}
+
 int main(int argc, char *argv[])
 {
 	t_gen	*gen;
 	
 	if (argc != 2)
 		error_call("Error:\nno map specified.\n", 1, NULL);
-	init_fnc(&gen);
-	if (valid_src_file(argv[1], &gen->src_file))
-		error_call("Error:\nwrong map name.\n", 1, &gen);
-	if (!get_map(&gen->map_srcs, gen->src_file))
-		error_call("Error:\nincorrect content of the source file.\n", 1, &gen);
-	if (!data_transform(&gen))
-		error_call("Error:\nincorrect work with the received data.\n", 1, &gen);
-//	while (1);
+	parse_data(&gen, argv[1]);
+	setup_render(gen);
+	gen->data->win = mlx_new_window(gen->data->mlx, gen->resx, gen->resy, "Cub3D");
+	mlx_hook(gen->data->win, 2, 1L << 0, key_press, gen);
+	mlx_hook(gen->data->win, 3, 1L << 1, key_lift, gen);
+//	mlx_hook(gen->data->win, 33, 1L << 17, clean_and_exit_z, gen);
+	mlx_loop_hook(gen->data->mlx, render_next_frame, gen);
+	mlx_loop(gen->data->mlx);
+
 	error_call("success execute", 0, &gen);//утекает использование ГНЛа, нужно будет создать временную переменную для его использования и перед каждым новым использованием её фришить
 }
 
-//void	init_images(t_gen **gen)
-//{
-//	(*gen)->data->no = mlx_xpm_file_to_image((*gen)->data->mlx, (*gen)->map_srcs->no,
-//						&(*gen)->data->width, &(*gen)->data->height);
-//	free((*gen)->map_srcs->no);
-//	(*gen)->map_srcs->no = NULL;
-//	(*gen)->data->so = mlx_xpm_file_to_image((*gen)->data->mlx, (*gen)->map_srcs->so,
-//											 &(*gen)->data->width, &(*gen)->data->height);
-//	free((*gen)->map_srcs->so);
-//	(*gen)->map_srcs->so = NULL;
-//	(*gen)->data->we = mlx_xpm_file_to_image((*gen)->data->mlx, (*gen)->map_srcs->we,
-//											 &(*gen)->data->width, &(*gen)->data->height);
-//	free((*gen)->map_srcs->we);
-//	(*gen)->map_srcs->we = NULL;
-//	(*gen)->data->ea = mlx_xpm_file_to_image((*gen)->data->mlx, (*gen)->map_srcs->ea,
-//											 &(*gen)->data->width, &(*gen)->data->height);
-//	free((*gen)->map_srcs->ea);
-//	(*gen)->map_srcs->ea = NULL;
-//}
+void	parse_data(t_gen **gen, char *file)
+{
+	init_fnc(gen);
+	if (valid_src_file(file, &(*gen)->src_file))
+		error_call("Error:\nwrong map name.\n", 1, gen);
+	if (!get_map(&(*gen)->map_srcs, (*gen)->src_file))
+		error_call("Error:\nincorrect content of the source file.\n", 1, gen);
+	(*gen)->map_srcs->size.x = (int)ft_strlen((*gen)->map_srcs->map[0]);
+	(*gen)->map_srcs->size.y = (int)duarrlen((*gen)->map_srcs->map);
+	if (!data_transform(gen))
+		error_call("Error:\nincorrect work with the received data.\n", 1, gen);
+}
+
+void	init_images(t_gen **gen)
+{
+	(*gen)->data->no = load_image((*gen)->data->mlx, (*gen)->map_srcs->no);
+	free((*gen)->map_srcs->no);
+	(*gen)->map_srcs->no = NULL;
+	(*gen)->data->so = load_image((*gen)->data->mlx, (*gen)->map_srcs->so);
+	free((*gen)->map_srcs->so);
+	(*gen)->map_srcs->so = NULL;
+	(*gen)->data->we = load_image((*gen)->data->mlx, (*gen)->map_srcs->we);
+	free((*gen)->map_srcs->we);
+	(*gen)->map_srcs->we = NULL;
+	(*gen)->data->ea = load_image((*gen)->data->mlx, (*gen)->map_srcs->ea);
+	free((*gen)->map_srcs->ea);
+	(*gen)->map_srcs->ea = NULL;
+}
 
 int	create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
+int		set_player(t_gen *gen, char c, t_vec p)
+{
+	int val;
+
+	if (c == 'E')
+		val = 0;
+	else if (c == 'S')
+		val = 1;
+	else if (c == 'W')
+		val = 2;
+	else if (c == 'N')
+		val = 3;
+	else
+		return (0);
+	gen->player = make_player();
+	gen->player.pos.x = p.x + 0.50001;
+	gen->player.pos.y = p.y + 0.50001;
+	gen->player.s_pos.x = gen->player.pos.x;
+	gen->player.s_pos.y = gen->player.pos.y;
+	gen->player.yaw = M_PI / 2.0 * val;
+	return (1);
+}
+
 int	data_transform(t_gen **gen)
 {
-//	(*gen)->data->mlx = mlx_init();
-//	init_images(gen);
+	t_vec p;
+
+	(*gen)->data->mlx = mlx_init();
+	init_images(gen);
 	(*gen)->data->f_color = create_trgb(0, (*gen)->map_srcs->fc[0],
 						(*gen)->map_srcs->fc[1], (*gen)->map_srcs->fc[2]);
 	(*gen)->data->c_color = create_trgb(0, (*gen)->map_srcs->cc[0],
 										(*gen)->map_srcs->cc[1], (*gen)->map_srcs->cc[2]);
 	if (!valid_map(gen))
 		return (0);
+	p.x = (*gen)->unit_x_pos;
+	p.y = (*gen)->unit_y_pos;
+	set_player(*gen, (*gen)->unit_type, p);
 	return (1);
 }
 
 void	init_fnc(t_gen **gen)
 {
 	(*gen) = (t_gen *)malloc(sizeof(t_gen));
+	(*gen)->resx = 800;
+	(*gen)->resy = 400;
 	(*gen)->src_file = 0;
 	(*gen)->map_srcs = (t_map *)malloc(sizeof (t_map));
 	(*gen)->map_srcs->no = NULL;
@@ -82,10 +146,10 @@ void	init_fnc(t_gen **gen)
 	(*gen)->data = (t_data *) malloc(sizeof (t_data));
 	(*gen)->data->mlx = NULL;
 	(*gen)->data->win = NULL;
-	(*gen)->data->no = NULL;
-	(*gen)->data->so = NULL;
-	(*gen)->data->we = NULL;
-	(*gen)->data->ea = NULL;
+	(*gen)->data->no.img = NULL;
+	(*gen)->data->so.img = NULL;
+	(*gen)->data->we.img = NULL;
+	(*gen)->data->ea.img = NULL;
 	(*gen)->data->f_color = 0;
 	(*gen)->data->c_color = 0;
 	(*gen)->data->width = 0;

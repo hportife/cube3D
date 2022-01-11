@@ -17,8 +17,60 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <math.h>
+# include <stdbool.h>
+
 # include "get_next_line/get_next_line.h"
 # include "mlx/mlx.h"
+
+typedef enum		e_cardinal
+{
+	NORTH,
+	SOUTH,
+	WEST,
+	EAST
+}					t_cardinal;
+
+typedef struct	s_vec {
+	int			x;
+	int			y;
+}				t_vec;
+
+typedef struct	s_vecd {
+	double		x;
+	double		y;
+}				t_vecd;
+
+typedef struct		s_keybinds
+{
+	bool			forwards;
+	bool			backwards;
+	bool			left;
+	bool			right;
+	bool			rotate_left;
+	bool			rotate_right;
+	t_vecd			move;
+}					t_keybinds;
+
+typedef struct		s_player
+{
+	t_vecd			pos;
+	t_vecd			s_pos;
+	t_vecd			render;
+	t_vecd			motion;
+	t_keybinds		keybinds;
+	double			yaw;
+	double			pitch;
+	double			motion_yaw;
+	double			motion_pitch;
+}					t_player;
+
+typedef struct		s_line
+{
+	char			*line;
+	int				size;
+	struct s_line	*next;
+}					t_line;
 
 typedef struct s_map
 {
@@ -29,17 +81,39 @@ typedef struct s_map
 	int		*fc;
 	int		*cc;
     char	**map;
+	t_vec	size;
 }   t_map;
+
+typedef struct	s_img
+{
+	void		*img;
+	void		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			pixel_len;
+	int			endian;
+	int			width;
+	int			height;
+}				t_img;
+
+
+typedef struct	s_shape
+{
+	int			x;
+	int			y;
+	int			height;
+	t_img		*img;
+}				t_shape;
 
 typedef struct s_data
 {
 	//mlx data
 	void	*mlx;
 	void	*win;
-	void	*no;
-	void	*so;
-	void	*we;
-	void	*ea;
+	t_img	no;
+	t_img	so;
+	t_img	we;
+	t_img	ea;
 	int		f_color;
 	int		c_color;
 	int		width;
@@ -51,10 +125,56 @@ typedef struct s_gen
     int     src_file;
     t_map   *map_srcs;
 	t_data	*data;
-    int     unit_x_pos;
+	t_img	img;
+	t_player	player;
+	int     unit_x_pos;
     int     unit_y_pos;
     char    unit_type;
+	double			resx;
+	double			resy;
+	double			fov;
+
 }   t_gen;
+
+
+typedef struct	s_rot
+{
+	double		angle;
+	double		cos;
+	double		sin;
+}				t_rot;
+
+typedef struct		s_ray {
+	t_vecd			st_cos;
+	t_vecd			st_sin;
+	double			ln_cos;
+	double			ln_sin;
+}					t_ray;
+
+typedef struct		s_trace {
+	t_ray			ray;
+	t_ray			step;
+	t_rot			rot;
+	t_shape			line;
+	t_vec			pos;
+	t_vecd			ref;
+	t_cardinal		card;
+	int				i;
+	double			newa;
+	double			len;
+	double			offset;
+}					t_trace;
+
+int				get_pixel(t_img *data, int x, int y);
+t_img			make_image(void *mlx, int w, int h);
+t_img			load_image(void *mlx, char *path);
+void			set_img_strip(t_img *data, t_shape shape, float offset);
+void			fill_img(t_img img, int c, int start, int stop);
+int				stringlen(char *string);
+
+t_rot			make_rot(double angle);
+
+void	parse_data(t_gen **gen, char *file);
 
 int		noonsym(char *str, char sym);
 int		duarrlen(char **array);
@@ -73,18 +193,17 @@ char	fstsym(char *str);
 int		freenret(char **str, int ret);
 
 char	*ft_strnstr(const char *str1, const char *str2, size_t len);
-size_t	ft_strlen(const char *str);
-char	*ft_strdup(const char *s1);
+
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
-char	*ft_strchr(const char *s, int c);
+
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_atoi(const char *str);
-void    *ft_calloc(size_t count, size_t size);
+
 void	*ft_memset(void *b, int c, size_t len);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
-int		get_next_line(int fd, char **line);
+
 
 void	error_call(char *message, int exit_code, t_gen **gen);
 int		is_valid_name(char *name);
@@ -103,5 +222,47 @@ int		get_path(char *src, char **dst);
 int		data_transform(t_gen **gen);
 void	init_images(t_gen **gen);
 int		create_trgb(int t, int r, int g, int b);
+void			ray(t_gen *gen, t_img *img);
+t_vec			get_collide_pos(t_trace trace);
+int				check_collide(t_gen *gen, t_vec pos);
+t_ray			get_init_ray(t_rot *rot, double x, double y);
+void			cast_forward(t_ray *ray, t_ray step);
+t_img			*get_texture(t_gen *gen, t_cardinal card);
+void	destroy_img(t_gen *gen, t_img *img);
+void	clean_images(t_gen *gen);
+void	clean_all(t_gen *gen);
+void	clean_and_exit(int code, t_gen *gen);
+int		clean_and_exit_z(t_gen *gen);
+int		mlx_destroy_display(void *mlx_ptr);
+void			set_keystate(t_keybinds *keybinds, int key, bool pressed);
+int				key_press(int keycode, t_gen *gen);
+int				key_lift(int keycode, t_gen *gen);
+void			update_keybinds(t_gen *gen);
+t_keybinds		make_keybinds();
+t_map				make_empty(t_vec size);
+void				map_set(t_map *map, int x, int y, int value);
+int					map_get(t_map *map, int x, int y);
+int					map_get_val(t_map *map, int x, int y);
+void				clear_map(t_map *map);
+void	collidex(t_gen *gen, t_player *player);
+void	collidey(t_gen *gen, t_player *player);
+
+t_player	make_player();
+void		update_motion(t_player *player, t_gen *gen);
+void	draw_floor(t_gen *gen);
+void	draw_skybox(t_gen *gen);
+void	handle_error(t_gen *gen, char *error, char *trace);
+
+void	check_textures(t_gen *gen);
+
+t_cardinal	get_cardinal(t_trace trace);
+
+char				*ft_strcat(char *str, char c, int size);
+void				free_file(t_line **first);
+int					add_line(t_line **line, char *data, int size);
+int					free_ret(char *buf, t_line **first);
+
+void			normalize(t_vecd *vec, double scale);
+double			calc_sqrtlen(t_vecd v);
 
 #endif
