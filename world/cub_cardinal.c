@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub_cardinal.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttranche <ttranche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hportife <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/29 21:27:38 by ttranche          #+#    #+#             */
-/*   Updated: 2021/03/19 12:29:31 by ttranche         ###   ########.fr       */
+/*   Created: 2022/01/04 12:05:13 by hportife          #+#    #+#             */
+/*   Updated: 2022/01/04 12:08:33 by hportife         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../main.h"
-
-/*
-** Gets a cardinal direction based on a raycast hit
-*/
+#include "../main.h"
 
 t_cardinal	get_cardinal(t_trace trace)
 {

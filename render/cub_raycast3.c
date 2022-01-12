@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub_raycast3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttranche <ttranche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hportife <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/19 11:50:36 by ttranche          #+#    #+#             */
-/*   Updated: 2021/03/19 11:55:26 by ttranche         ###   ########.fr       */
+/*   Created: 2022/01/04 12:05:13 by hportife          #+#    #+#             */
+/*   Updated: 2022/01/04 12:08:33 by hportife         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main.h"
-
-/*
-** Casts the main ray forward, by adding the cos/sin steps alternately based
-** on which is the closest
-*/
 
 void	cast_forward(t_ray *ray, t_ray step)
 {

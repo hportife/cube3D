@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttranche <ttranche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hportife <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/25 15:17:54 by ttranche          #+#    #+#             */
-/*   Updated: 2021/02/02 11:02:33 by ttranche         ###   ########.fr       */
+/*   Created: 2022/01/04 12:05:13 by hportife          #+#    #+#             */
+/*   Updated: 2022/01/04 12:08:33 by hportife         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_img	make_image(void *mlx, int w, int h)
 	if (!img.img)
 		return (img);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
-		&img.line_length, &img.endian);
+			&img.line_length, &img.endian);
 	img.pixel_len = img.bits_per_pixel / 8;
 	return (img);
 }
@@ -35,7 +35,7 @@ t_img	load_image(void *mlx, char *path)
 	if (!img.img)
 		return (img);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
-		&img.line_length, &img.endian);
+			&img.line_length, &img.endian);
 	img.pixel_len = img.bits_per_pixel / 8;
 	return (img);
 }
@@ -54,12 +54,12 @@ void	set_img_strip(t_img *data, t_shape shape, float offset)
 	v.x = (shape.img->width - 1) * offset;
 	o = shape.img->height / (double)shape.height;
 	cur = o * (v.y - shape.y);
-	dst = data->addr + (v.y * data->line_length +
-		shape.x * (data->pixel_len));
+	dst = data->addr + (
+			v.y * data->line_length + shape.x * (data->pixel_len));
 	while (v.y < shape.y + shape.height && v.y < data->height)
 	{
 		t = get_pixel(shape.img, v.x, (int)cur);
-		*(unsigned int*)dst = t;
+		*(unsigned int *)dst = t;
 		dst += data->line_length;
 		cur += o;
 		++v.y;

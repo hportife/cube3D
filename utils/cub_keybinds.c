@@ -3,20 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cub_keybinds.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttranche <ttranche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hportife <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/27 20:03:11 by ttranche          #+#    #+#             */
-/*   Updated: 2021/03/19 12:24:46 by ttranche         ###   ########.fr       */
+/*   Created: 2022/01/04 12:05:13 by hportife          #+#    #+#             */
+/*   Updated: 2022/01/04 12:08:33 by hportife         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub_keybinds.h"
+#include "../main.h"
 
-/*
-** Updates the player keybinds
-*/
-
-void		set_keystate(t_keybinds *keybinds, int key, bool pressed)
+void	set_keystate(t_keybinds *keybinds, int key, bool pressed)
 {
 	if (key == ROTATE_LEFT)
 		keybinds->rotate_left = pressed;
@@ -32,11 +28,7 @@ void		set_keystate(t_keybinds *keybinds, int key, bool pressed)
 		keybinds->right = pressed;
 }
 
-/*
-** Handles key presses and stuffed portal adding logic here too
-*/
-
-int			key_press(int keycode, t_gen *gen)
+int	key_press(int keycode, t_gen *gen)
 {
 	set_keystate(&(gen->player.keybinds), keycode, true);
 	if (keycode == ESC)
@@ -44,23 +36,15 @@ int			key_press(int keycode, t_gen *gen)
 	return (0);
 }
 
-/*
-** Handles key lifting
-*/
-
-int			key_lift(int keycode, t_gen *gen)
+int	key_lift(int keycode, t_gen *gen)
 {
 	set_keystate(&(gen->player.keybinds), keycode, false);
 	return (0);
 }
 
-/*
-** Inits the keybinds
-*/
-
 t_keybinds	make_keybinds(void)
 {
-	t_keybinds keys;
+	t_keybinds	keys;
 
 	keys.forwards = false;
 	keys.backwards = false;
@@ -73,13 +57,9 @@ t_keybinds	make_keybinds(void)
 	return (keys);
 }
 
-/*
-** Handles the player moving based on the keybinds
-*/
-
-void		update_keybinds(t_gen *gen)
+void	update_keybinds(t_gen *gen)
 {
-	t_keybinds *keys;
+	t_keybinds	*keys;
 
 	keys = &(gen->player.keybinds);
 	keys->move.x = 0;

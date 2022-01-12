@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_raycast.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttranche <ttranche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hportife <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/27 20:12:03 by ttranche          #+#    #+#             */
-/*   Updated: 2021/03/19 11:50:30 by ttranche         ###   ########.fr       */
+/*   Created: 2022/01/04 12:05:13 by hportife          #+#    #+#             */
+/*   Updated: 2022/01/04 12:08:33 by hportife         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,24 @@ t_ray	get_init_ray(t_rot *rot, double x, double y)
 {
 	t_ray	ray;
 
-	ray.st_cos.x = rot->cos > 0 ? floor(x + 1) - x : ceil(x - 1) - x;
+	if (rot->cos > 0)
+		ray.st_cos.x = floor(x + 1) - x;
+	else
+		ray.st_cos.x = ceil(x - 1) - x;
 	ray.st_cos.y = ray.st_cos.x * (rot->sin / rot->cos);
 	ray.ln_cos = calc_sqrtlen(ray.st_cos);
-	ray.st_sin.y = rot->sin > 0 ? floor(y + 1) - y : ceil(y - 1) - y;
+	if (rot->sin > 0)
+		ray.st_sin.y = floor(y + 1) - y;
+	else
+		ray.st_sin.y = ceil(y - 1) - y;
 	ray.st_sin.x = ray.st_sin.y * (rot->cos / rot->sin);
 	ray.ln_sin = calc_sqrtlen(ray.st_sin);
 	return (ray);
 }
 
-/*
-** Calculates the texture offset for the main ray hit
-*/
-
 double	tex_offset(t_trace trace)
 {
-	double offset;
+	double	offset;
 
 	if (trace.ray.ln_cos < trace.ray.ln_sin)
 	{
@@ -52,11 +54,6 @@ double	tex_offset(t_trace trace)
 	return (offset);
 }
 
-/*
-** Setups the t_shape of the row (x) that'll be drawn to the main buffer,
-** and some other stuff like the texture offset for it etc...
-*/
-
 void	setup_line(t_gen *gen, t_trace *tr)
 {
 	tr->card = get_cardinal(*tr);
@@ -67,11 +64,6 @@ void	setup_line(t_gen *gen, t_trace *tr)
 	tr->line.img = get_texture(gen, tr->card);
 	tr->offset = tex_offset(*tr);
 }
-
-/*
-** Handles the casting forward of the ray, and calls the draw functions if it
-** does hit
-*/
 
 int	do_ray(t_gen *gen, t_trace *tr, t_img *img)
 {
@@ -85,10 +77,6 @@ int	do_ray(t_gen *gen, t_trace *tr, t_img *img)
 	cast_forward(&(tr->ray), tr->step);
 	return (1);
 }
-
-/*
-** Starts all the ray casting for every row on the screen
-*/
 
 void	ray(t_gen *gen, t_img *img)
 {

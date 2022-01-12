@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_player.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttranche <ttranche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hportife <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/27 19:58:22 by ttranche          #+#    #+#             */
-/*   Updated: 2021/03/22 13:20:44 by ttranche         ###   ########.fr       */
+/*   Created: 2022/01/04 12:05:13 by hportife          #+#    #+#             */
+/*   Updated: 2022/01/04 12:08:33 by hportife         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_player	make_player(void)
 {
-	t_player player;
+	t_player	player;
 
 	player.pos.x = 0;
 	player.pos.y = 0;
@@ -31,9 +31,9 @@ t_player	make_player(void)
 	return (player);
 }
 
-void		handle_keys(t_player *player)
+void	handle_keys(t_player *player)
 {
-	float ratio;
+	float	ratio;
 
 	ratio = (float)0.68;
 	if (player->keybinds.rotate_left && !player->keybinds.rotate_right)
@@ -46,18 +46,19 @@ void		handle_keys(t_player *player)
 	player->motion.y *= ratio;
 }
 
-void		update_render(t_player *player, t_gen *gen)
+void	update_render(t_player *player, t_gen *gen)
 {
 	player->render.x = player->pos.x;
 	player->render.y = player->pos.y;
-	if (map_get(gen->map_srcs, floor(player->render.x), floor(player->render.y)))
+	if (map_get(gen->map_srcs,
+			floor(player->render.x), floor(player->render.y)))
 	{
 		player->render.x = player->pos.x;
 		player->render.y = player->pos.y;
 	}
 }
 
-void		update_motion(t_player *player, t_gen *gen)
+void	update_motion(t_player *player, t_gen *gen)
 {
 	double	cs;
 	double	sn;
@@ -76,5 +77,28 @@ void		update_motion(t_player *player, t_gen *gen)
 	update_render(player, gen);
 	player->yaw += player->motion_yaw;
 	player->pitch = fmin(gen->resy / 4 - 4, fmax(-gen->resy / 4,
-		player->pitch + player->motion_pitch));
+				player->pitch + player->motion_pitch));
+}
+
+int	set_player(t_gen *gen, char c, t_vec p)
+{
+	int	val;
+
+	if (c == 'E')
+		val = 0;
+	else if (c == 'S')
+		val = 1;
+	else if (c == 'W')
+		val = 2;
+	else if (c == 'N')
+		val = 3;
+	else
+		return (0);
+	gen->player = make_player();
+	gen->player.pos.x = p.x + 0.50001;
+	gen->player.pos.y = p.y + 0.50001;
+	gen->player.s_pos.x = gen->player.pos.x;
+	gen->player.s_pos.y = gen->player.pos.y;
+	gen->player.yaw = M_PI / 2.0 * val;
+	return (1);
 }

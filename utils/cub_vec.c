@@ -3,22 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   cub_vec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttranche <ttranche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hportife <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/27 19:55:51 by ttranche          #+#    #+#             */
-/*   Updated: 2021/03/19 12:20:22 by ttranche         ###   ########.fr       */
+/*   Created: 2022/01/04 12:05:13 by hportife          #+#    #+#             */
+/*   Updated: 2022/01/04 12:08:33 by hportife         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main.h"
 
-/*
-** Normalizes a vector
-*/
-
 void	normalize(t_vecd *vec, double scale)
 {
-	double len;
+	double	len;
 
 	len = sqrt(vec->x * vec->x + vec->y * vec->y);
 	if (len < 0.0001)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_collide.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttranche <ttranche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hportife <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/10 22:41:01 by ttranche          #+#    #+#             */
-/*   Updated: 2021/03/19 13:18:59 by ttranche         ###   ########.fr       */
+/*   Created: 2022/01/04 12:05:13 by hportife          #+#    #+#             */
+/*   Updated: 2022/01/04 12:08:33 by hportife         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	collidex(t_gen *gen, t_player *player)
 
 void	collidey(t_gen *gen, t_player *player)
 {
-	int			side;
+	int	side;
+
 	side = floor(player->pos.y + player->motion.y);
 	if (!map_get(gen->map_srcs, floor(player->pos.x), side))
 		player->pos.y += player->motion.y;
