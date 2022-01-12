@@ -10,12 +10,20 @@ file(GLOB cub_SRC
         "get_next_line/*.c"
         "libft_fncs/*.c"
         "libft_fncs/*.h"
+        "render/*.c"
+        "render/*.h"
+        "utils/*.c"
+        "utils/*.h"
+        "world/*.c"
+        "world/*.h"
 #        "mlx/*.c"
 #        "mlx/*.h"
         )
 
-add_executable(cube ${cub_SRC} duarrotate.c freenret.c)
+add_executable(cube ${cub_SRC})
 
-#include_directories(${CMAKE_CURRENT_SOURCE_DIR}/mlx)
-#
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/mlx)
+
 #target_link_libraries (cube ${EXTRA_LIBS} ${CMAKE_CURRENT_SOURCE_DIR}/mlx/libmlx.a)
+
+target_link_libraries (cube ${CMAKE_CURRENT_SOURCE_DIR}/mlx/libmlx_Linux.a X11 Xext m)

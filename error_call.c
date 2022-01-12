@@ -1,5 +1,15 @@
 #include "main.h"
 
+void	clean_mlx(t_gen **gen)
+{
+	clean_images(*gen);
+	if ((*gen)->data->win)
+		mlx_destroy_window((*gen)->data->mlx, (*gen)->data->win);
+	mlx_destroy_display((*gen)->data->mlx);
+	if ((*gen)->data->mlx)
+		free((*gen)->data->mlx);
+}
+
 void	free_general(t_gen **gen)
 {
 	int	i;
@@ -25,17 +35,18 @@ void	free_general(t_gen **gen)
 		}
 		free((*gen)->map_srcs);
 	}
+	clean_mlx(gen);
 	free((*gen));
 }
 
-void    error_call(char *message, int exit_code, t_gen **gen)
+void	error_call(char *message, int exit_code, t_gen **gen)
 {
-    if (gen)
+	if (gen)
 	{
 		free_general(gen);
 		if ((*gen)->src_file > 0)
 			close((*gen)->src_file);
 	}
-    printf("%s\n", message);
-    exit (exit_code);
+	printf("%s\n", message);
+	exit (exit_code);
 }
