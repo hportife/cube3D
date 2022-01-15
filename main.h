@@ -23,13 +23,24 @@
 # include "reusable_fncs/get_next_line/get_next_line.h"
 # include "mlx/mlx.h"
 
-# define ROTATE_LEFT 123
-# define ROTATE_RIGHT 124
-# define FORWARD_W_Z 13
-# define BACK_S_S 1
-# define RIGHT_D_D 2
-# define LEFT_A_Q 0
-# define ESC 53
+# ifdef SO_LONG_IS_MACOS
+#  define ROTATE_LEFT 123
+#  define ROTATE_RIGHT 124
+#  define FORWARD_W_Z 13
+#  define BACK_S_S 1
+#  define RIGHT_D_D 2
+#  define LEFT_A_Q 0
+#  define ESC 53
+
+# else
+#  define ROTATE_LEFT 0xff51
+#  define ROTATE_RIGHT 0xff53
+#  define FORWARD_W_Z 0x0077
+#  define BACK_S_S 0x0073
+#  define RIGHT_D_D 0x0064
+#  define LEFT_A_Q 0x0061
+#  define ESC 0xff1b
+# endif
 
 typedef enum e_cardinal
 {
@@ -223,7 +234,6 @@ void		destroy_img(t_gen *gen, t_img *img);
 void		clean_images(t_gen *gen);
 void		clean_and_exit(int code, t_gen *gen);
 int			clean_and_exit_z(t_gen *gen);
-int			mlx_destroy_display(void *mlx_ptr);
 void		set_keystate(t_keybinds *keybinds, int key, bool pressed);
 int			key_press(int keycode, t_gen *gen);
 int			key_lift(int keycode, t_gen *gen);
@@ -233,7 +243,7 @@ int			map_get(t_map *map, int x, int y);
 void		collidex(t_gen *gen, t_player *player);
 void		collidey(t_gen *gen, t_player *player);
 
-t_player	make_player(void);
+void		make_player(t_player *player);
 void		update_motion(t_player *player, t_gen *gen);
 void		draw_floor(t_gen *gen);
 void		draw_skybox(t_gen *gen);

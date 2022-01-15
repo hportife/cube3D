@@ -12,23 +12,20 @@
 
 #include "../main.h"
 
-t_player	make_player(void)
+void	make_player(t_player *player)
 {
-	t_player	player;
-
-	player.pos.x = 0;
-	player.pos.y = 0;
-	player.s_pos.x = player.pos.x;
-	player.s_pos.y = player.pos.y;
-	player.motion.x = 0;
-	player.motion.y = 0;
-	player.motion_yaw = 0;
-	player.yaw = 0;
-	player.pitch = -40;
-	player.motion_yaw = 0;
-	player.motion_pitch = 8;
-	player.keybinds = make_keybinds();
-	return (player);
+	player->pos.x = 0;
+	player->pos.y = 0;
+	player->s_pos.x = player->pos.x;
+	player->s_pos.y = player->pos.y;
+	player->motion.x = 0;
+	player->motion.y = 0;
+	player->motion_yaw = 0;
+	player->yaw = 0;
+	player->pitch = -40;
+	player->motion_yaw = 0;
+	player->motion_pitch = 8;
+	player->keybinds = make_keybinds();
 }
 
 void	handle_keys(t_player *player)
@@ -94,7 +91,7 @@ int	set_player(t_gen *gen, char c, t_vec p)
 		val = 3;
 	else
 		return (0);
-	gen->player = make_player();
+	make_player(&gen->player);
 	gen->player.pos.x = p.x + 0.50001;
 	gen->player.pos.y = p.y + 0.50001;
 	gen->player.s_pos.x = gen->player.pos.x;

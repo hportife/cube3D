@@ -25,12 +25,14 @@ int	have_connect(char *str1, char *str2)
 {
 	size_t	i;
 	int		hv_cnct;
+	size_t	len;
 
 	if (!str1 || !str2)
 		return (0);
 	i = 0;
 	hv_cnct = 0;
-	while (i < ft_strlen(str1))
+	len = ft_strlen(str1);
+	while (i < len)
 	{
 		if (str1[i] != ' ' && str2[i] != ' ')
 			hv_cnct++;

@@ -1,8 +1,6 @@
 NAME	= cube3D
 CC		= gcc
 FLAGS	= -Wall -Werror -Wextra
-CFLAGS	= $(FLAGS)
-FRMWK	= -framework OpenGL -framework AppKit
 SRC		= 	main.c\
 			reusable_fncs/duarrcalloc.c\
 			reusable_fncs/duarrfree.c\
@@ -46,26 +44,40 @@ SRC		= 	main.c\
 
 OBJ		= $(SRC:%.c=%.o)
 
-.o: .c
-	$(CC) $(CFLAGS) -Imlx $< -o $@
+OS := $(shell uname)
+ifeq ($(OS),Linux)
+	MINILIBX = -Lmlx_Linux -lmlx_Linux -Lminilibx-linux -Imlx_Linux -lXext -lX11 -lm -lz -g
+	FLAGS += -Iminilibx-linux -Imlx_Linux -O3
+else
+	SO_LONG_IS_MACOS = 1
+	MINILIBX = -Lmlx -lmlx -framework OpenGL -framework AppKit
+	FLAGS += -Imlx
+endif
 
-all: mlx $(NAME)
+
+.o: .c
+	$(CC) $(FLAGS) $< -o $@
+
+all: mlx-linux $(NAME)
 
 $(NAME): $(OBJ) main.h
-	$(CC) $(FLAGS) $(OBJ) -Lmlx -lmlx $(FRMWK) -o $@
+	$(CC) $(FLAGS) $(OBJ) $(MINILIBX) -o $@
 
 mlx:
 	make -C mlx/
 
+mlx-linux:
+	make -C minilibx-linux/
+
 clean:
 	make -C mlx/ clean
+	make -C minilibx-linux/ clean
 	rm -f $(OBJ)
 
 fclean: clean
 	rm -f mlx/libmlx.a
+	rm -f minilibx/libmlx_Linux.a
 	rm -f $(NAME)
 
 re: fclean all
 .PHONY: all re clean fclean mlx
-# all :
-# 	gcc -Wall -Werror -Wextra -D BUFFER_SIZE=1 -Lmlx -lmlx -framework OpenGL -framework AppKit main.c mlx/libmlx.a in_game.c servfnc_SL.c so_long.h gnl/get_next_line.h gnl/get_next_line.c gnl/get_next_line_utils.c
