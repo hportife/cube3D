@@ -12,7 +12,7 @@
 
 #include "main.h"
 
-char fstsym(char *str)
+char	fstsym(char *str)
 {
 	int	i;
 

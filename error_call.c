@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error_call.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hportife <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/15 11:17:25 by hportife          #+#    #+#             */
+/*   Updated: 2022/01/15 11:17:27 by hportife         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 void	clean_mlx(t_gen **gen)
@@ -5,7 +17,7 @@ void	clean_mlx(t_gen **gen)
 	clean_images(*gen);
 	if ((*gen)->data->win)
 		mlx_destroy_window((*gen)->data->mlx, (*gen)->data->win);
-	mlx_destroy_display((*gen)->data->mlx);
+//	mlx_destroy_display((*gen)->data->mlx);
 	if ((*gen)->data->mlx)
 		free((*gen)->data->mlx);
 }

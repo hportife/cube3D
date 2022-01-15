@@ -9,6 +9,7 @@ SRC		= 	main.c\
 			nohavesym.c		noonsym.c	onsymofstr.c\
 			serv_fncs_I.c	sne_noonsym.c	stradd.c\
 			str_no_have_syms.c	valid_fncs.c\
+			init_data.c\
 			get_first_found_symbol.c	duarrotate.c\
 			freenret.c\
 			libft_fncs/ft_atoi.c\
@@ -20,6 +21,16 @@ SRC		= 	main.c\
 			libft_fncs/ft_strncmp.c\
 			get_next_line/get_next_line.c\
 			get_next_line/get_next_line_utils.c\
+			world/cub_cardinal.c	world/cub_collide.c\
+			world/cub_map.c			world/cub_player.c\
+			utils/cub_cleaner.c		utils/cub_rot.c\
+			utils/cub_keybinds.c	utils/cub_utils.c\
+			utils/cub_utils2.c\
+			utils/cub_utils4.c		utils/cub_vec.c\
+			render/cub_floor.c		render/cub_hud.c\
+			render/cub_raycast.c	render/cub_raycast2.c\
+			render/cub_raycast3.c	render/update_world.c\
+
 
 
 OBJ		= $(SRC:%.c=%.o)

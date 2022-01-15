@@ -35,11 +35,11 @@ void	handle_keys(t_player *player)
 {
 	float	ratio;
 
-	ratio = (float)0.68;
+	ratio = (float)0.88;
 	if (player->keybinds.rotate_left && !player->keybinds.rotate_right)
-		player->motion_yaw -= 0.002;
+		player->motion_yaw -= 0.02;
 	else if (player->keybinds.rotate_right && !player->keybinds.rotate_left)
-		player->motion_yaw += 0.002;
+		player->motion_yaw += 0.02;
 	else
 		player->motion_yaw *= 0.895;
 	player->motion.x *= ratio;

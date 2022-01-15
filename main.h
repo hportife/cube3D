@@ -23,13 +23,13 @@
 # include "get_next_line/get_next_line.h"
 # include "mlx/mlx.h"
 
-# define ROTATE_LEFT 0xff51
-# define ROTATE_RIGHT 0xff53
-# define FORWARD_W_Z 0x0077
-# define BACK_S_S 0x0073
-# define RIGHT_D_D 0x0064
-# define LEFT_A_Q 0x0061
-# define ESC 0xff1b
+# define ROTATE_LEFT 123
+# define ROTATE_RIGHT 124
+# define FORWARD_W_Z 13
+# define BACK_S_S 1
+# define RIGHT_D_D 2
+# define LEFT_A_Q 0
+# define ESC 53
 
 typedef enum e_cardinal
 {

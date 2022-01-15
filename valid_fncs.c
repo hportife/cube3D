@@ -89,8 +89,8 @@ int	get_stnnd(char *str, int *start, int *end, char	border)
 
 int	have_connect(char *str1, char *str2)
 {
-	int	i;
-	int	hv_cnct;
+	size_t 	i;
+	int		hv_cnct;
 
 	if (!str1 || !str2)
 		return (0);

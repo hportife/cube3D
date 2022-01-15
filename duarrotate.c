@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   duarrotate.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hportife <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/15 11:18:18 by hportife          #+#    #+#             */
+/*   Updated: 2022/01/15 11:18:24 by hportife         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
-char **duarrotate(char **duarr)
+char	**duarrotate(char **duarr)
 {
 	char	**tmp;
-	int		i;
-	int		j;
+	size_t	i;
+	size_t	j;
 
 	if (!duarr || !duarr[0])
 		return (0);
