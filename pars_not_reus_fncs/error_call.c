@@ -17,7 +17,6 @@ void	clean_mlx(t_gen **gen)
 	clean_images(*gen);
 	if ((*gen)->data->win)
 		mlx_destroy_window((*gen)->data->mlx, (*gen)->data->win);
-//	mlx_destroy_display((*gen)->data->mlx);
 	if ((*gen)->data->mlx)
 		free((*gen)->data->mlx);
 }

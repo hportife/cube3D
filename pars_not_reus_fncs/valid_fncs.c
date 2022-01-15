@@ -49,9 +49,7 @@ int	wrong_pos(char **map, int y)
 		else
 			break ;
 	}
-	if (!map[y][x])
-		return (0);
-	return (1);
+	return (map[y][x]);
 }
 
 int	gaps_checker(char **map)
@@ -82,9 +80,9 @@ int	valid_map(t_gen **gen)
 	int		y;
 	int		unit_qt;
 
-	y = 0;
+	y = -1;
 	unit_qt = 0;
-	while ((*gen)->map_srcs->map && (*gen)->map_srcs->map[y])
+	while ((*gen)->map_srcs->map && (*gen)->map_srcs->map[++y])
 	{
 		unit_qt += onsymofstr((*gen)->map_srcs->map[y], "SNEW");
 		if (unit_qt == 1 && !(*gen)->unit_x_pos && !(*gen)->unit_y_pos)
@@ -99,9 +97,9 @@ int	valid_map(t_gen **gen)
 			!= ft_strlen((*gen)->map_srcs->map[0])
 			|| noonsym((*gen)->map_srcs->map[y], ' '))
 			return (0);
-		y++;
 	}
 	if (unit_qt == 0)
 		return (0);
-	return (!gaps_checker((*gen)->map_srcs->map) && !free_use_gaps_ck(duarrotate((*gen)->map_srcs->map)));
+	return (!gaps_checker((*gen)->map_srcs->map)
+		&& !free_use_gaps_ck(duarrotate((*gen)->map_srcs->map)));
 }

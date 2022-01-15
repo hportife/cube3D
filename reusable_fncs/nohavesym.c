@@ -1,17 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   nohavesym.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hportife <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/15 16:49:44 by hportife          #+#    #+#             */
+/*   Updated: 2022/01/15 16:49:45 by hportife         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../main.h"
 
-int nohavesm(char *str, char sym)
+int	nohavesm(char *str, char sym)
 {
-    int i;
+	int	i;
 
-    if (!str)
-        return (1);
-    i = 0;
-    while (str[i])
-    {
-        if (str[i] == sym)
-            return (0);
-        i++;
-    }
-    return (1);
+	if (!str)
+		return (1);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == sym)
+			return (0);
+		i++;
+	}
+	return (1);
 }
