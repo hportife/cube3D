@@ -20,7 +20,7 @@
 # include <math.h>
 # include <stdbool.h>
 
-# include "get_next_line/get_next_line.h"
+# include "reusable_fncs/get_next_line/get_next_line.h"
 # include "mlx/mlx.h"
 
 # define ROTATE_LEFT 123
@@ -197,6 +197,7 @@ int			ft_atoi(const char *str);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 
 void		error_call(char *message, int exit_code, t_gen **gen);
+int			have_connect(char *str1, char *str2);
 int			is_valid_name(char *name);
 int			get_map(t_map **mpsrc, int map_file);
 int			get_color(char *src, int **color_dst);

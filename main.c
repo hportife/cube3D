@@ -12,48 +12,22 @@
 
 #include "main.h"
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_gen	*gen;
-	
+
 	if (argc != 2)
 		error_call("Error:\nno map specified.\n", 1, NULL);
 	parse_data(&gen, argv[1]);
 	setup_render(gen);
-	gen->data->win = mlx_new_window(gen->data->mlx, gen->resx, gen->resy, "Cub3D");
+	gen->data->win = mlx_new_window(gen->data->mlx, gen->resx,
+			gen->resy, "Cub3D");
 	mlx_hook(gen->data->win, 2, 1L << 0, key_press, gen);
 	mlx_hook(gen->data->win, 3, 1L << 1, key_lift, gen);
 	mlx_hook(gen->data->win, 33, 1L << 17, clean_and_exit_z, gen);
 	mlx_loop_hook(gen->data->mlx, render_next_frame, gen);
 	mlx_loop(gen->data->mlx);
-
-	error_call("success execute", 0, &gen);//утекает использование ГНЛа, нужно будет создать временную переменную для его использования и перед каждым новым использованием её фришить
-}
-
-int	get_path(char *src, char **dst)
-{
-	int	i;
-	int	j;
-
-	i = 2;
-	if (*dst)
-	{
-		free(*dst);
-		*dst = NULL;
-	}
-	while (!ft_isalpha(src[i]) && src[i] != '.' && src[i] != '_' && src[i] != '/')
-		i++;
-	j = i;
-	while (ft_isalnum(src[i]) || src[i] == '/' || src[i] == '_' || src[i] == '.')
-		i++;
-	(*dst) = ft_substr(src, j, i - j);
-	return (0);
-}
-
-int	wrongcloser(int tmpfd)
-{
-	close(tmpfd);
-	return (0);
+	error_call("success execute", 0, &gen);
 }
 
 int	valid_map_data(t_map **map_source)
@@ -77,52 +51,6 @@ int	valid_map_data(t_map **map_source)
 		return (wrongcloser(tmpfd));
 	close(tmpfd);
 	return (1);
-}
-
-int	get_color_ret(int const *color_dst)
-{
-	int i;
-
-	i = 0;
-	while (i < 3)
-	{
-		if (color_dst[i] > 255 || color_dst[i] < 0)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-int	get_color(char *src, int **color_dst)
-{
-	int i;
-	int	j;
-	int id;
-	char *tmp;
-
-	i = 1;
-	j = i;
-	id = 0;
-	color_dst[0] = (int *) malloc(sizeof (int) * 3);
-	while (src[i])
-	{
-		if (src[i] == ' ' && id != 2)
-			j = i++;
-		if (src[i] >= '0' && src[i] <= '9')
-			i++;
-		else
-		{
-			tmp = ft_substr(src, j, i);
-			color_dst[0][id] = ft_atoi(tmp);
-			j = ++i;
-			id++;
-			free(tmp);
-		}
-	}
-	tmp = ft_substr(src, j, i);
-	color_dst[0][id] = ft_atoi(tmp);
-	free(tmp);
-	return (get_color_ret(color_dst[0]));
 }
 
 int	add_content_to_map_srcs(char *line, t_map **dst)
@@ -154,18 +82,18 @@ int	get_map(t_map **mpsrc, int map_file)
 	read_ident = get_next_line(map_file, &tmp);
 	while (1)
 	{
-		if (read_ident == -1) // если с файлом беда
+		if (read_ident == -1)
 			return (freenret(&tmp, 0));
 		if (fstsym(tmp) == '1' || fstsym(tmp) == '0')
 			(*mpsrc)->map = stradd(tmp, (*mpsrc)->map);
 		else if ((fstsym(tmp) != '1' && fstsym(tmp) != '0') && (*mpsrc)->map)
 			return (freenret(&tmp, 0));
-		else if (add_content_to_map_srcs(tmp, mpsrc)) //если какая-то из строк нас не устраивает при чтении, ретёрнаем завершение программы
+		else if (add_content_to_map_srcs(tmp, mpsrc))
 			return (freenret(&tmp, 0));
 		if (tmp)
 			free(tmp);
-		if (read_ident > 0) // пока наш файл не закончился
-			read_ident = get_next_line(map_file, &tmp); // продолжаем считывание с файла
+		if (read_ident > 0)
+			read_ident = get_next_line(map_file, &tmp);
 		else
 			break ;
 	}

@@ -4,23 +4,30 @@ FLAGS	= -Wall -Werror -Wextra
 CFLAGS	= $(FLAGS)
 FRMWK	= -framework OpenGL -framework AppKit
 SRC		= 	main.c\
-			duarrcalloc.c	duarrfree.c	duarrlen.c\
-			error_call.c	fstsym.c	getsympos.c\
-			nohavesym.c		noonsym.c	onsymofstr.c\
-			serv_fncs_I.c	sne_noonsym.c	stradd.c\
-			str_no_have_syms.c	valid_fncs.c\
-			init_data.c\
-			get_first_found_symbol.c	duarrotate.c\
-			freenret.c\
-			libft_fncs/ft_atoi.c\
-			libft_fncs/ft_isalnum.c\
-			libft_fncs/ft_isalpha.c\
-			libft_fncs/ft_memset.c\
-			libft_fncs/ft_strnstr.c\
-			libft_fncs/ft_substr.c\
-			libft_fncs/ft_strncmp.c\
-			get_next_line/get_next_line.c\
-			get_next_line/get_next_line_utils.c\
+			reusable_fncs/duarrcalloc.c\
+			reusable_fncs/duarrfree.c\
+			reusable_fncs/duarrlen.c\
+			reusable_fncs/fstsym.c\
+			reusable_fncs/getsympos.c\
+			reusable_fncs/nohavesym.c\
+			reusable_fncs/noonsym.c\
+			reusable_fncs/onsymofstr.c\
+			reusable_fncs/sne_noonsym.c\
+			reusable_fncs/stradd.c\
+			reusable_fncs/get_first_found_symbol.c\
+			reusable_fncs/duarrotate.c\
+			reusable_fncs/freenret.c\
+			reusable_fncs/wrongcloser.c\
+			reusable_fncs/str_no_have_syms.c\
+			reusable_fncs/libft_fncs/ft_atoi.c\
+			reusable_fncs/libft_fncs/ft_isalnum.c\
+			reusable_fncs/libft_fncs/ft_isalpha.c\
+			reusable_fncs/libft_fncs/ft_memset.c\
+			reusable_fncs/libft_fncs/ft_strnstr.c\
+			reusable_fncs/libft_fncs/ft_substr.c\
+			reusable_fncs/libft_fncs/ft_strncmp.c\
+			reusable_fncs/get_next_line/get_next_line.c\
+			reusable_fncs/get_next_line/get_next_line_utils.c\
 			world/cub_cardinal.c	world/cub_collide.c\
 			world/cub_map.c			world/cub_player.c\
 			utils/cub_cleaner.c		utils/cub_rot.c\
@@ -30,6 +37,10 @@ SRC		= 	main.c\
 			render/cub_floor.c		render/cub_hud.c\
 			render/cub_raycast.c	render/cub_raycast2.c\
 			render/cub_raycast3.c	render/update_world.c\
+			pars_not_reus_fncs/error_call.c\
+			pars_not_reus_fncs/serv_fncs_I.c\
+			pars_not_reus_fncs/valid_fncs.c\
+			pars_not_reus_fncs/init_data.c\
 
 
 
