@@ -23,7 +23,7 @@
 # include "reusable_fncs/get_next_line/get_next_line.h"
 # include "mlx/mlx.h"
 
-# ifdef SO_LONG_IS_MACOS
+# ifdef CUB3D_IS_MACOS
 #  define ROTATE_LEFT 123
 #  define ROTATE_RIGHT 124
 #  define FORWARD_W_Z 13

@@ -1,4 +1,4 @@
-NAME	= cube3D
+NAME	= cub3D
 CC		= gcc
 FLAGS	= -Wall -Werror -Wextra
 SRC		= 	main.c\
@@ -49,7 +49,7 @@ ifeq ($(OS),Linux)
 	MINILIBX = -Lmlx_Linux -lmlx_Linux -Lminilibx-linux -Imlx_Linux -lXext -lX11 -lm -lz -g
 	FLAGS += -Iminilibx-linux -Imlx_Linux -O3
 else
-	SO_LONG_IS_MACOS = 1
+	CUB3D_IS_MACOS = 1
 	MINILIBX = -Lmlx -lmlx -framework OpenGL -framework AppKit
 	FLAGS += -Imlx
 endif
