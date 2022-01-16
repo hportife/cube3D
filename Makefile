@@ -32,15 +32,12 @@ SRC		= 	main.c\
 			utils/cub_keybinds.c	utils/cub_utils.c\
 			utils/cub_utils2.c\
 			utils/cub_utils4.c		utils/cub_vec.c\
-			render/cub_floor.c		render/cub_hud.c\
 			render/cub_raycast.c	render/cub_raycast2.c\
 			render/cub_raycast3.c	render/update_world.c\
 			pars_not_reus_fncs/error_call.c\
 			pars_not_reus_fncs/serv_fncs_I.c\
 			pars_not_reus_fncs/valid_fncs.c\
 			pars_not_reus_fncs/init_data.c\
-
-
 
 OBJ		= $(SRC:%.c=%.o)
 

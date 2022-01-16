@@ -20,8 +20,6 @@ file(GLOB cub_SRC
         "utils/*.h"
         "world/*.c"
         "world/*.h"
-#        "mlx/*.c"
-#        "mlx/*.h"
         )
 
 add_executable(cube ${cub_SRC})

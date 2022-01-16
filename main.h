@@ -79,9 +79,7 @@ typedef struct s_player
 	t_vecd			motion;
 	t_keybinds		keybinds;
 	double			yaw;
-	double			pitch;
 	double			motion_yaw;
-	double			motion_pitch;
 }					t_player;
 
 typedef struct s_map
@@ -140,7 +138,6 @@ typedef struct s_gen
 	char		unit_type;
 	double		resx;
 	double		resy;
-	double		fov;
 }	t_gen;
 
 typedef struct s_rot
@@ -176,7 +173,7 @@ int			get_pixel(t_img *data, int x, int y);
 t_img		make_image(void *mlx, int w, int h);
 t_img		load_image(void *mlx, char *path);
 void		set_img_strip(t_img *data, t_shape shape, float offset);
-void		fill_img(t_img img, int c, int start, int stop);
+void		fill_img(t_img img, int c, int stop);
 
 t_rot		make_rot(double angle);
 
@@ -185,12 +182,9 @@ void		parse_data(t_gen **gen, char *file);
 int			noonsym(char *str, char sym);
 int			duarrlen(char **array);
 char		**duarrfree(char **arr);
-char		**duarrcalloc(int size);
 char		**duarrotate(char **duarr);
 char		**stradd(char *str, char **dst);
-int			sne_noonsym(char *str, char sym);
 int			nohavesm(char *str, char sym);
-int			str_no_have_syms(char *str, char *syms);
 int			onsymofstr(char *str, const char *symbols);
 int			getsympos(char *str, const char *symbols);
 char		get_first_found_symbol(char const *str, char const *symbols);
@@ -245,8 +239,6 @@ void		collidey(t_gen *gen, t_player *player);
 
 void		make_player(t_player *player);
 void		update_motion(t_player *player, t_gen *gen);
-void		draw_floor(t_gen *gen);
-void		draw_skybox(t_gen *gen);
 
 t_cardinal	get_cardinal(t_trace trace);
 
@@ -254,6 +246,5 @@ void		normalize(t_vecd *vec, double scale);
 double		calc_sqrtlen(t_vecd v);
 int			set_player(t_gen *gen, char c, t_vec p);
 int			render_next_frame(t_gen *gen);
-void		setup_render(t_gen *gen);
 
 #endif

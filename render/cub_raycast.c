@@ -60,7 +60,6 @@ void	setup_line(t_gen *gen, t_trace *tr)
 	tr->len = fmin(tr->ray.ln_cos, tr->ray.ln_sin);
 	tr->line.height = gen->resy / (tr->len * cos(tr->newa));
 	tr->line.y = (gen->resy - tr->line.height) / 2;
-	tr->line.y += gen->player.pitch * 2;
 	tr->line.img = get_texture(gen, tr->card);
 	tr->offset = tex_offset(*tr);
 }
@@ -85,7 +84,7 @@ void	ray(t_gen *gen, t_img *img)
 	trace.line.x = -1;
 	while (++trace.line.x < gen->resx)
 	{
-		trace.newa = atan2((trace.line.x / (double)gen->resx) - .5, gen->fov);
+		trace.newa = atan2((trace.line.x / (double)gen->resx) - .5, 0.66);
 		trace.rot = make_rot(gen->player.yaw + trace.newa);
 		trace.ref.x = gen->player.render.x;
 		trace.ref.y = gen->player.render.y;

@@ -26,7 +26,7 @@ char	**duarrotate(char **duarr)
 	tmp[ft_strlen(duarr[0])] = NULL;
 	i = 0;
 	while (i < ft_strlen(duarr[0]))
-		tmp[i++] = ft_calloc(sizeof (char), duarrlen(duarr));
+		tmp[i++] = ft_calloc(sizeof (char), duarrlen(duarr) + 1);
 	i = -1;
 	while (duarr[++i])
 	{

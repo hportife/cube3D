@@ -12,12 +12,6 @@
 
 #include "../main.h"
 
-void	setup_render(t_gen *gen)
-{
-	gen->fov = (double)gen->resy / (double)gen->resx;
-	gen->img = make_image(gen->data->mlx, gen->resx, gen->resy);
-}
-
 void	update_world(t_gen *gen)
 {
 	update_keybinds(gen);
@@ -27,8 +21,8 @@ void	update_world(t_gen *gen)
 int	render_next_frame(t_gen *gen)
 {
 	update_world(gen);
-	draw_floor(gen);
-	draw_skybox(gen);
+	fill_img(gen->img, gen->data->f_color, gen->img.height);
+	fill_img(gen->img, gen->data->c_color, fmax(0, gen->img.height / 2 + 1));
 	ray(gen, &(gen->img));
 	mlx_put_image_to_window(gen->data->mlx, gen->data->win, gen->img.img, 0, 0);
 	mlx_do_sync(gen->data->mlx);

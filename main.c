@@ -19,7 +19,7 @@ int	main(int argc, char *argv[])
 	if (argc != 2)
 		error_call("Error:\nno map specified.\n", 1, NULL);
 	parse_data(&gen, argv[1]);
-	setup_render(gen);
+	gen->img = make_image(gen->data->mlx, gen->resx, gen->resy);
 	gen->data->win = mlx_new_window(gen->data->mlx, gen->resx,
 			gen->resy, "Cub3D");
 	mlx_hook(gen->data->win, 2, 1L << 0, key_press, gen);

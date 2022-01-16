@@ -22,9 +22,7 @@ void	make_player(t_player *player)
 	player->motion.y = 0;
 	player->motion_yaw = 0;
 	player->yaw = 0;
-	player->pitch = -40;
 	player->motion_yaw = 0;
-	player->motion_pitch = 8;
 	player->keybinds = make_keybinds();
 }
 
@@ -37,8 +35,6 @@ void	handle_keys(t_player *player)
 		player->motion_yaw -= 0.002;
 	else if (player->keybinds.rotate_right && !player->keybinds.rotate_left)
 		player->motion_yaw += 0.002;
-	else
-		player->motion_yaw *= 0.895;
 	player->motion.x *= ratio;
 	player->motion.y *= ratio;
 }
@@ -68,13 +64,10 @@ void	update_motion(t_player *player, t_gen *gen)
 	player->motion.y += move.y * cs + move.x * sn;
 	handle_keys(player);
 	player->motion_yaw *= 0.914;
-	player->motion_pitch *= 0.82;
 	collidex(gen, player);
 	collidey(gen, player);
 	update_render(player, gen);
 	player->yaw += player->motion_yaw;
-	player->pitch = fmin(gen->resy / 4 - 4, fmax(-gen->resy / 4,
-				player->pitch + player->motion_pitch));
 }
 
 int	set_player(t_gen *gen, char c, t_vec p)

@@ -12,13 +12,13 @@
 
 #include "../main.h"
 
-void	fill_img(t_img img, int c, int start, int stop)
+void	fill_img(t_img img, int c, int stop)
 {
 	int	*bytes;
 	int	*end;
 
 	end = (void *)img.addr + stop * img.line_length;
-	bytes = (int *)((void *)img.addr + start * img.line_length);
+	bytes = (int *)((void *)img.addr);
 	while (bytes < end)
 		*bytes++ = c;
 }
